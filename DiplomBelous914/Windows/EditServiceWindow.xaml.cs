@@ -27,7 +27,7 @@ namespace DiplomBelous914.Windows
         private  int test;
         View_ServiceWorker View_ServiceWorker1;
         private ClientContract editClientContract;
-        public EditServiceWindow(View_ServiceWorker view_ServiceWorker)
+        public EditServiceWindow(View_ServiceWorker view_ServiceWorker)    
         {
             
             InitializeComponent();
