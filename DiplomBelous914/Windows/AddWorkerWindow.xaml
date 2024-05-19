@@ -1,0 +1,204 @@
+﻿<Window x:Class="DiplomBelous914.Windows.AddWorkerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DiplomBelous914.Windows"
+        mc:Ignorable="d"
+        Title="AddWorkerWindow" Height="650" Width="800"
+         WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="511*"/>
+            <ColumnDefinition Width="289*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.ColumnSpan="2">
+            <TextBlock 
+                Text="Работник"
+                FontSize="25"
+                HorizontalAlignment="Center"
+                       />
+            <TextBlock
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Text="Имя"
+                Margin="0 10 0 0 "/>
+            <TextBox
+                x:Name="TbFirstName"
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Width="200"
+                Margin="0 10 0 0" 
+                Background="#FFF1B189"/>
+            <TextBlock
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Text="Фамилия"
+                Margin="0 10 0 0 "/>
+            <TextBox
+                x:Name="TbLastName"
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Width="200"
+                Margin="0 10 0 0" 
+                Background="#FFF1B189"/>
+            <TextBlock
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Text="Отчество"
+                Margin="0 10 0 0 "/>
+            <TextBox
+                x:Name="TbPatronymic"
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Width="200"
+                Margin="0 10 0 0" 
+                Background="#FFF1B189"/>
+            <TextBlock
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Text="Пол"
+                Margin="0 10 0 0 "/>
+            <ComboBox
+                x:Name="cmbGender"
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Margin="0 10 0 0 "
+                Width="200" BorderBrush="#FFF1B189"
+                >
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#FFF1B189"/>
+                        <GradientStop Color="#FFF1B189" Offset="1"/>
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+            </ComboBox>
+            <TextBlock
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Text="Должость"
+                Margin="0 10 0 0 "/>
+            <ComboBox
+                x:Name="cmbPost"
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Margin="0 10 0 0 "
+                Width="200" BorderBrush="#FFF1B189"
+     >
+                <ComboBox.Background>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#FFF1B189"/>
+                        <GradientStop Color="#FFF1B189" Offset="1"/>
+                    </LinearGradientBrush>
+                </ComboBox.Background>
+            </ComboBox>
+            <TextBlock
+               HorizontalAlignment="Center"
+               FontSize="20"
+               Text="Логин"
+               Margin="0 10 0 0 "/>
+            <TextBox
+                x:Name="TbLogin"
+               HorizontalAlignment="Center"
+               FontSize="20"
+               Width="200"
+               Margin="0 10 0 0" 
+               Background="#FFF1B189"/>
+            <TextBlock
+               HorizontalAlignment="Center"
+               FontSize="20"
+               Text="Пароль"
+               Margin="0 10 0 0 "/>
+            <TextBox
+               x:Name="TbPassword"
+               HorizontalAlignment="Center"
+               FontSize="20"
+               Width="200"
+               Margin="0 10 0 0" 
+               Background="#FFF1B189"/>
+            <Button
+                x:Name="btnSave"
+                Content="Сохранить"
+               FontSize="20"
+                Margin="0 10 0 0 "
+               Width="200" 
+                Click="btnSave_Click"
+               />
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBlock 
+                HorizontalAlignment="Center"
+                Text="Дополнительная информация"
+                 FontSize="15"
+                Margin="0 150 0 0"
+                />
+            <TextBlock
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Text="Образование"
+                Margin="0 10 0 0 "/>
+            <TextBox
+                x:Name="TbEdication"
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Width="200"
+                Margin="0 10 0 0" 
+                Background="#FFF1B189"/>
+            <TextBlock
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Text="Начало обучения"
+                Margin="0 10 0 0 "/>
+            <DatePicker x:Name="datePickerStart"/>
+            <TextBlock
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Text="окончание обучения"
+                Margin="0 10 0 0 "/>
+            <DatePicker x:Name="datePickerEnd"/>
+            <TextBlock
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Text="Диплом"
+                Margin="0 10 0 0 "/>
+            <Button
+                x:Name="btnFile"
+                HorizontalAlignment="Center"
+                FontSize="20"
+                Content="загрузить файл"
+                Margin="0 10 0 0 " Click="btnFile_Click"/>
+        </StackPanel>
+        <Image x:Name="___Res_1_png" Margin="-173,-38,0,0"
+               Source="/Res/1.png" 
+               Stretch="Fill" 
+               RenderTransformOrigin="0.5,0.5"
+               HorizontalAlignment="Left" 
+               Width="503" Height="220" VerticalAlignment="Top">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.542"/>
+                    <RotateTransform Angle="-42.209"/>
+                    <TranslateTransform X="1.37" Y="1.51"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image x:Name="___Res_1_png_Копировать" Margin="-116,424,0,0"
+            Source="/Res/1.png" 
+            Stretch="Fill" 
+            RenderTransformOrigin="0.402,1.155"
+            HorizontalAlignment="Left" 
+            Width="490" Height="69" VerticalAlignment="Top" Opacity="0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="54.013"/>
+                    <TranslateTransform X="-41.522" Y="-26.285"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+
+    </Grid>
+</Window>

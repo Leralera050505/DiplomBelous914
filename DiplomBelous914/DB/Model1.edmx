@@ -1,0 +1,1759 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище Belous914_Kyrs1Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ActivityService">
+          <Key>
+            <PropertyRef Name="IdActivityService" />
+          </Key>
+          <Property Name="IdActivityService" Type="int" Nullable="false" />
+          <Property Name="NameActivity" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="IdClient" />
+          </Key>
+          <Property Name="IdClient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdGender" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClientContract">
+          <Key>
+            <PropertyRef Name="IdClientContract" />
+          </Key>
+          <Property Name="IdClientContract" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdContract" Type="int" Nullable="false" />
+          <Property Name="IdService" Type="int" Nullable="false" />
+          <Property Name="IdWorker" Type="int" Nullable="false" />
+          <Property Name="StartDateService" Type="datetime" Nullable="false" />
+          <Property Name="EndDateService" Type="datetime" />
+          <Property Name="IDActivityService" Type="int" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Competence">
+          <Key>
+            <PropertyRef Name="IdCompetence" />
+          </Key>
+          <Property Name="IdCompetence" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameCompetence" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CompetenceCheck">
+          <Key>
+            <PropertyRef Name="IdCompetenceCheck" />
+          </Key>
+          <Property Name="IdCompetenceCheck" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdClientContract" Type="int" />
+          <Property Name="IdCompetence" Type="int" />
+        </EntityType>
+        <EntityType Name="CompetenceWorker">
+          <Key>
+            <PropertyRef Name="IdCompetenceWorker" />
+          </Key>
+          <Property Name="IdCompetenceWorker" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdWorker" Type="int" Nullable="false" />
+          <Property Name="IdCompetence" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="IdContract" />
+          </Key>
+          <Property Name="IdContract" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameContract" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="Activity" Type="bit" Nullable="false" />
+          <Property Name="IdClient" Type="int" Nullable="false" />
+          <Property Name="Report" Type="nvarchar" MaxLength="1000" />
+          <Property Name="FullCost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="IdDocument" />
+          </Key>
+          <Property Name="IdDocument" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdService" Type="int" Nullable="false" />
+          <Property Name="DocumentTemplate" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Education">
+          <Key>
+            <PropertyRef Name="IdEducation" />
+          </Key>
+          <Property Name="IdEducation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdWorker" Type="int" Nullable="false" />
+          <Property Name="NameEducation" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="StartStudy" Type="date" Nullable="false" />
+          <Property Name="EndStudy" Type="date" Nullable="false" />
+          <Property Name="Diploma" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="IdGender" />
+          </Key>
+          <Property Name="IdGender" Type="int" Nullable="false" />
+          <Property Name="NameGender" Type="nvarchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Password">
+          <Key>
+            <PropertyRef Name="IdPassword" />
+          </Key>
+          <Property Name="IdPassword" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="IdPost" />
+          </Key>
+          <Property Name="IdPost" Type="int" Nullable="false" />
+          <Property Name="NamePost" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="AmountSalaryPost" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Salary">
+          <Key>
+            <PropertyRef Name="IdSalary" />
+          </Key>
+          <Property Name="IdSalary" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdWorker" Type="int" Nullable="false" />
+          <Property Name="AmountSalary" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="DateSalary" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="IdService" />
+          </Key>
+          <Property Name="IdService" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameService" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Worker">
+          <Key>
+            <PropertyRef Name="IdWorker" />
+          </Key>
+          <Property Name="IdWorker" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdGender" Type="int" />
+          <Property Name="IdPost" Type="int" />
+          <Property Name="IdPassword" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Belous914_Kyrs1.dbo.View_Client" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="View_Client">
+          <Key>
+            <PropertyRef Name="Client" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Phone" />
+          </Key>
+          <Property Name="Client" Type="nvarchar" MaxLength="152" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="NameContract" Type="nvarchar" MaxLength="50" />
+          <Property Name="FullCost" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="NameService" Type="nvarchar" MaxLength="4000" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Belous914_Kyrs1.dbo.View_Contract" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="View_Contract">
+          <Key>
+            <PropertyRef Name="NameContract" />
+            <PropertyRef Name="Activity" />
+            <PropertyRef Name="FullCost" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="Client" />
+          </Key>
+          <Property Name="NameContract" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Activity" Type="bit" Nullable="false" />
+          <Property Name="NameService" Type="nvarchar" MaxLength="4000" />
+          <Property Name="FullCost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="Client" Type="nvarchar" MaxLength="56" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Belous914_Kyrs1.dbo.View_Service" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="View_Service">
+          <Key>
+            <PropertyRef Name="NameService" />
+            <PropertyRef Name="Cost" />
+          </Key>
+          <Property Name="NameService" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="DocumentTemplate" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Belous914_Kyrs1.dbo.View_ServiceWorker" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="View_ServiceWorker">
+          <Key>
+            <PropertyRef Name="IdService" />
+            <PropertyRef Name="NameService" />
+            <PropertyRef Name="IdActivityService" />
+            <PropertyRef Name="FullName" />
+            <PropertyRef Name="IdPost" />
+            <PropertyRef Name="Cost" />
+            <PropertyRef Name="StartDateService" />
+            <PropertyRef Name="NameActivity" />
+            <PropertyRef Name="NameContract" />
+            <PropertyRef Name="IdWorker" />
+            <PropertyRef Name="IdClientContract" />
+          </Key>
+          <Property Name="IdService" Type="int" Nullable="false" />
+          <Property Name="NameService" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdActivityService" Type="int" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="56" Nullable="false" />
+          <Property Name="IdPost" Type="int" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="StartDateService" Type="datetime" Nullable="false" />
+          <Property Name="NameActivity" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameContract" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EndDateService" Type="datetime" />
+          <Property Name="IdWorker" Type="int" Nullable="false" />
+          <Property Name="IdClientContract" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Belous914_Kyrs1.dbo.View_Worker" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="View_Worker">
+          <Key>
+            <PropertyRef Name="Worker" />
+            <PropertyRef Name="NamePost" />
+            <PropertyRef Name="NameEducation" />
+            <PropertyRef Name="Diploma" />
+          </Key>
+          <Property Name="Worker" Type="nvarchar" MaxLength="56" Nullable="false" />
+          <Property Name="Competence" Type="nvarchar" MaxLength="4000" />
+          <Property Name="NamePost" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="NameEducation" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Diploma" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Belous914_Kyrs1.dbo.VW_Worker_T" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="VW_Worker_T">
+          <Key>
+            <PropertyRef Name="NameGender" />
+            <PropertyRef Name="NamePost" />
+            <PropertyRef Name="NameEducation" />
+            <PropertyRef Name="StartStudy" />
+            <PropertyRef Name="EndStudy" />
+            <PropertyRef Name="Diploma" />
+            <PropertyRef Name="IdWorker" />
+          </Key>
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="NameGender" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="NamePost" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="NameEducation" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="StartStudy" Type="date" Nullable="false" />
+          <Property Name="EndStudy" Type="date" Nullable="false" />
+          <Property Name="Diploma" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="IdWorker" Type="int" Nullable="false" />
+          <Property Name="IdGender" Type="int" />
+          <Property Name="IdPassword" Type="int" />
+          <Property Name="IdPost" Type="int" />
+        </EntityType>
+        <Association Name="FK_Client_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientContract_ActivityService">
+          <End Role="ActivityService" Type="Self.ActivityService" Multiplicity="1" />
+          <End Role="ClientContract" Type="Self.ClientContract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityService">
+              <PropertyRef Name="IdActivityService" />
+            </Principal>
+            <Dependent Role="ClientContract">
+              <PropertyRef Name="IDActivityService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientContract_Contract">
+          <End Role="Contract" Type="Self.Contract" Multiplicity="1" />
+          <End Role="ClientContract" Type="Self.ClientContract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contract">
+              <PropertyRef Name="IdContract" />
+            </Principal>
+            <Dependent Role="ClientContract">
+              <PropertyRef Name="IdContract" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientContract_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="ClientContract" Type="Self.ClientContract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="IdService" />
+            </Principal>
+            <Dependent Role="ClientContract">
+              <PropertyRef Name="IdService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientContract_Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="ClientContract" Type="Self.ClientContract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="IdWorker" />
+            </Principal>
+            <Dependent Role="ClientContract">
+              <PropertyRef Name="IdWorker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompetenceCheck_ClientContract">
+          <End Role="ClientContract" Type="Self.ClientContract" Multiplicity="0..1" />
+          <End Role="CompetenceCheck" Type="Self.CompetenceCheck" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientContract">
+              <PropertyRef Name="IdClientContract" />
+            </Principal>
+            <Dependent Role="CompetenceCheck">
+              <PropertyRef Name="IdClientContract" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompetenceCheck_Competence">
+          <End Role="Competence" Type="Self.Competence" Multiplicity="0..1" />
+          <End Role="CompetenceCheck" Type="Self.CompetenceCheck" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competence">
+              <PropertyRef Name="IdCompetence" />
+            </Principal>
+            <Dependent Role="CompetenceCheck">
+              <PropertyRef Name="IdCompetence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompetenceWorker_Competence">
+          <End Role="Competence" Type="Self.Competence" Multiplicity="1" />
+          <End Role="CompetenceWorker" Type="Self.CompetenceWorker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competence">
+              <PropertyRef Name="IdCompetence" />
+            </Principal>
+            <Dependent Role="CompetenceWorker">
+              <PropertyRef Name="IdCompetence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompetenceWorker_Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="CompetenceWorker" Type="Self.CompetenceWorker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="IdWorker" />
+            </Principal>
+            <Dependent Role="CompetenceWorker">
+              <PropertyRef Name="IdWorker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="IdClient" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Document_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="IdService" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="IdService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Education_Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="Education" Type="Self.Education" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="IdWorker" />
+            </Principal>
+            <Dependent Role="Education">
+              <PropertyRef Name="IdWorker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Salary_Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="Salary" Type="Self.Salary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="IdWorker" />
+            </Principal>
+            <Dependent Role="Salary">
+              <PropertyRef Name="IdWorker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Worker_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Worker_Password">
+          <End Role="Password" Type="Self.Password" Multiplicity="0..1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Password">
+              <PropertyRef Name="IdPassword" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="IdPassword" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Worker_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="0..1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="IdPost" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="IdPost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AVGDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="datetime">
+          <Parameter Name="NameService" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ContractService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NameServace" Type="nvarchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="NameContract" Type="nvarchar" MaxLength="50" />
+                <Property Name="FullCost" Type="decimal" Precision="10" Scale="2" />
+                <Property Name="NameService" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="Client" Type="nvarchar" MaxLength="56" Nullable="false" />
+                <Property Name="Worker" Type="nvarchar" MaxLength="56" Nullable="false" />
+                <Property Name="StartDateService" Type="datetime" Nullable="false" />
+                <Property Name="EndDateService" Type="datetime" />
+                <Property Name="NameActivityService" Type="nvarchar" MaxLength="50" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="ContractView" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdContract" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="NameContract" Type="nvarchar" MaxLength="50" />
+                <Property Name="FullCost" Type="decimal" Precision="10" Scale="2" />
+                <Property Name="Report" Type="nvarchar" MaxLength="1000" />
+                <Property Name="StartDate" Type="datetime" />
+                <Property Name="Client" Type="nvarchar" MaxLength="56" Nullable="false" />
+                <Property Name="Phone" Type="char" MaxLength="11" Nullable="false" />
+                <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="PR_Contract" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StartDate" Type="date" Mode="In" />
+          <Parameter Name="EndDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="Pr_Salary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="PR_ServiceClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nameService" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="PR_ServiceName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nameService" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ServiceView" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdContract" Type="int" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="NameService" Type="nvarchar" MaxLength="50" />
+                <Property Name="Cost" Type="decimal" Precision="10" Scale="2" />
+                <Property Name="StartDateService" Type="datetime" />
+                <Property Name="EndDateService" Type="datetime" />
+                <Property Name="NameActivity" Type="nvarchar" MaxLength="50" Nullable="false" />
+                <Property Name="Worker" Type="nvarchar" MaxLength="56" Nullable="false" />
+                <Property Name="Competence" Type="nvarchar" MaxLength="4000" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="Хранилище Belous914_Kyrs1ModelContainer">
+          <EntitySet Name="ActivityService" EntityType="Self.ActivityService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientContract" EntityType="Self.ClientContract" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Competence" EntityType="Self.Competence" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompetenceCheck" EntityType="Self.CompetenceCheck" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompetenceWorker" EntityType="Self.CompetenceWorker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contract" EntityType="Self.Contract" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Education" EntityType="Self.Education" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Password" EntityType="Self.Password" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Salary" EntityType="Self.Salary" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Worker" EntityType="Self.Worker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_Client" EntityType="Self.View_Client" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Client].[Client] AS [Client], 
+    [View_Client].[Email] AS [Email], 
+    [View_Client].[Phone] AS [Phone], 
+    [View_Client].[NameContract] AS [NameContract], 
+    [View_Client].[FullCost] AS [FullCost], 
+    [View_Client].[NameService] AS [NameService]
+    FROM [dbo].[View_Client] AS [View_Client]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_Contract" EntityType="Self.View_Contract" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Contract].[NameContract] AS [NameContract], 
+    [View_Contract].[Activity] AS [Activity], 
+    [View_Contract].[NameService] AS [NameService], 
+    [View_Contract].[FullCost] AS [FullCost], 
+    [View_Contract].[StartDate] AS [StartDate], 
+    [View_Contract].[Client] AS [Client]
+    FROM [dbo].[View_Contract] AS [View_Contract]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_Service" EntityType="Self.View_Service" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Service].[NameService] AS [NameService], 
+    [View_Service].[Cost] AS [Cost], 
+    [View_Service].[DocumentTemplate] AS [DocumentTemplate]
+    FROM [dbo].[View_Service] AS [View_Service]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_ServiceWorker" EntityType="Self.View_ServiceWorker" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_ServiceWorker].[IdService] AS [IdService], 
+    [View_ServiceWorker].[NameService] AS [NameService], 
+    [View_ServiceWorker].[IdActivityService] AS [IdActivityService], 
+    [View_ServiceWorker].[FullName] AS [FullName], 
+    [View_ServiceWorker].[IdPost] AS [IdPost], 
+    [View_ServiceWorker].[Cost] AS [Cost], 
+    [View_ServiceWorker].[StartDateService] AS [StartDateService], 
+    [View_ServiceWorker].[NameActivity] AS [NameActivity], 
+    [View_ServiceWorker].[NameContract] AS [NameContract], 
+    [View_ServiceWorker].[EndDateService] AS [EndDateService], 
+    [View_ServiceWorker].[IdWorker] AS [IdWorker], 
+    [View_ServiceWorker].[IdClientContract] AS [IdClientContract]
+    FROM [dbo].[View_ServiceWorker] AS [View_ServiceWorker]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_Worker" EntityType="Self.View_Worker" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Worker].[Worker] AS [Worker], 
+    [View_Worker].[Competence] AS [Competence], 
+    [View_Worker].[NamePost] AS [NamePost], 
+    [View_Worker].[NameEducation] AS [NameEducation], 
+    [View_Worker].[Diploma] AS [Diploma]
+    FROM [dbo].[View_Worker] AS [View_Worker]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_Worker_T" EntityType="Self.VW_Worker_T" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_Worker_T].[FirstName] AS [FirstName], 
+    [VW_Worker_T].[LastName] AS [LastName], 
+    [VW_Worker_T].[Patronymic] AS [Patronymic], 
+    [VW_Worker_T].[NameGender] AS [NameGender], 
+    [VW_Worker_T].[NamePost] AS [NamePost], 
+    [VW_Worker_T].[Login] AS [Login], 
+    [VW_Worker_T].[Password] AS [Password], 
+    [VW_Worker_T].[NameEducation] AS [NameEducation], 
+    [VW_Worker_T].[StartStudy] AS [StartStudy], 
+    [VW_Worker_T].[EndStudy] AS [EndStudy], 
+    [VW_Worker_T].[Diploma] AS [Diploma], 
+    [VW_Worker_T].[IdWorker] AS [IdWorker], 
+    [VW_Worker_T].[IdGender] AS [IdGender], 
+    [VW_Worker_T].[IdPassword] AS [IdPassword], 
+    [VW_Worker_T].[IdPost] AS [IdPost]
+    FROM [dbo].[VW_Worker_T] AS [VW_Worker_T]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Client_Gender" Association="Self.FK_Client_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientContract_ActivityService" Association="Self.FK_ClientContract_ActivityService">
+            <End Role="ActivityService" EntitySet="ActivityService" />
+            <End Role="ClientContract" EntitySet="ClientContract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientContract_Contract" Association="Self.FK_ClientContract_Contract">
+            <End Role="Contract" EntitySet="Contract" />
+            <End Role="ClientContract" EntitySet="ClientContract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientContract_Service" Association="Self.FK_ClientContract_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="ClientContract" EntitySet="ClientContract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientContract_Worker" Association="Self.FK_ClientContract_Worker">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="ClientContract" EntitySet="ClientContract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompetenceCheck_ClientContract" Association="Self.FK_CompetenceCheck_ClientContract">
+            <End Role="ClientContract" EntitySet="ClientContract" />
+            <End Role="CompetenceCheck" EntitySet="CompetenceCheck" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompetenceCheck_Competence" Association="Self.FK_CompetenceCheck_Competence">
+            <End Role="Competence" EntitySet="Competence" />
+            <End Role="CompetenceCheck" EntitySet="CompetenceCheck" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompetenceWorker_Competence" Association="Self.FK_CompetenceWorker_Competence">
+            <End Role="Competence" EntitySet="Competence" />
+            <End Role="CompetenceWorker" EntitySet="CompetenceWorker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompetenceWorker_Worker" Association="Self.FK_CompetenceWorker_Worker">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="CompetenceWorker" EntitySet="CompetenceWorker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Client" Association="Self.FK_Contract_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Document_Service" Association="Self.FK_Document_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Education_Worker" Association="Self.FK_Education_Worker">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="Education" EntitySet="Education" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Salary_Worker" Association="Self.FK_Salary_Worker">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="Salary" EntitySet="Salary" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Worker_Gender" Association="Self.FK_Worker_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Worker" EntitySet="Worker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Worker_Password" Association="Self.FK_Worker_Password">
+            <End Role="Password" EntitySet="Password" />
+            <End Role="Worker" EntitySet="Worker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Worker_Post" Association="Self.FK_Worker_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Worker" EntitySet="Worker" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Belous914_Kyrs1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="ContractService_Result">
+          <Property Name="NameContract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullCost" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="NameService" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Client" Type="String" MaxLength="56" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Worker" Type="String" MaxLength="56" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartDateService" Type="DateTime" Nullable="false" />
+          <Property Name="EndDateService" Type="DateTime" />
+          <Property Name="NameActivityService" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ContractView_Result">
+          <Property Name="NameContract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullCost" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Report" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" />
+          <Property Name="Client" Type="String" MaxLength="56" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ServiceView_Result">
+          <Property Name="NameService" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Cost" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="StartDateService" Type="DateTime" />
+          <Property Name="EndDateService" Type="DateTime" />
+          <Property Name="NameActivity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Worker" Type="String" MaxLength="56" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Competence" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </ComplexType>
+        <EntityType Name="ActivityService">
+          <Key>
+            <PropertyRef Name="IdActivityService" />
+          </Key>
+          <Property Name="IdActivityService" Type="Int32" Nullable="false" />
+          <Property Name="NameActivity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ClientContract" Relationship="Self.FK_ClientContract_ActivityService" FromRole="ActivityService" ToRole="ClientContract" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="IdClient" />
+          </Key>
+          <Property Name="IdClient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Client_Gender" FromRole="Client" ToRole="Gender" />
+          <NavigationProperty Name="Contract" Relationship="Self.FK_Contract_Client" FromRole="Client" ToRole="Contract" />
+        </EntityType>
+        <EntityType Name="ClientContract">
+          <Key>
+            <PropertyRef Name="IdClientContract" />
+          </Key>
+          <Property Name="IdClientContract" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdContract" Type="Int32" Nullable="false" />
+          <Property Name="IdService" Type="Int32" Nullable="false" />
+          <Property Name="IdWorker" Type="Int32" Nullable="false" />
+          <Property Name="StartDateService" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDateService" Type="DateTime" Precision="3" />
+          <Property Name="IDActivityService" Type="Int32" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ActivityService" Relationship="Self.FK_ClientContract_ActivityService" FromRole="ClientContract" ToRole="ActivityService" />
+          <NavigationProperty Name="Contract" Relationship="Self.FK_ClientContract_Contract" FromRole="ClientContract" ToRole="Contract" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_ClientContract_Service" FromRole="ClientContract" ToRole="Service" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_ClientContract_Worker" FromRole="ClientContract" ToRole="Worker" />
+          <NavigationProperty Name="CompetenceCheck" Relationship="Self.FK_CompetenceCheck_ClientContract" FromRole="ClientContract" ToRole="CompetenceCheck" />
+        </EntityType>
+        <EntityType Name="Competence">
+          <Key>
+            <PropertyRef Name="IdCompetence" />
+          </Key>
+          <Property Name="IdCompetence" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameCompetence" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CompetenceCheck" Relationship="Self.FK_CompetenceCheck_Competence" FromRole="Competence" ToRole="CompetenceCheck" />
+          <NavigationProperty Name="CompetenceWorker" Relationship="Self.FK_CompetenceWorker_Competence" FromRole="Competence" ToRole="CompetenceWorker" />
+        </EntityType>
+        <EntityType Name="CompetenceCheck">
+          <Key>
+            <PropertyRef Name="IdCompetenceCheck" />
+          </Key>
+          <Property Name="IdCompetenceCheck" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdClientContract" Type="Int32" />
+          <Property Name="IdCompetence" Type="Int32" />
+          <NavigationProperty Name="ClientContract" Relationship="Self.FK_CompetenceCheck_ClientContract" FromRole="CompetenceCheck" ToRole="ClientContract" />
+          <NavigationProperty Name="Competence" Relationship="Self.FK_CompetenceCheck_Competence" FromRole="CompetenceCheck" ToRole="Competence" />
+        </EntityType>
+        <EntityType Name="CompetenceWorker">
+          <Key>
+            <PropertyRef Name="IdCompetenceWorker" />
+          </Key>
+          <Property Name="IdCompetenceWorker" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdWorker" Type="Int32" Nullable="false" />
+          <Property Name="IdCompetence" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Competence" Relationship="Self.FK_CompetenceWorker_Competence" FromRole="CompetenceWorker" ToRole="Competence" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_CompetenceWorker_Worker" FromRole="CompetenceWorker" ToRole="Worker" />
+        </EntityType>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="IdContract" />
+          </Key>
+          <Property Name="IdContract" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameContract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Activity" Type="Boolean" Nullable="false" />
+          <Property Name="IdClient" Type="Int32" Nullable="false" />
+          <Property Name="Report" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="FullCost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Contract_Client" FromRole="Contract" ToRole="Client" />
+          <NavigationProperty Name="ClientContract" Relationship="Self.FK_ClientContract_Contract" FromRole="Contract" ToRole="ClientContract" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="IdDocument" />
+          </Key>
+          <Property Name="IdDocument" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdService" Type="Int32" Nullable="false" />
+          <Property Name="DocumentTemplate" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_Document_Service" FromRole="Document" ToRole="Service" />
+        </EntityType>
+        <EntityType Name="Education">
+          <Key>
+            <PropertyRef Name="IdEducation" />
+          </Key>
+          <Property Name="IdEducation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdWorker" Type="Int32" Nullable="false" />
+          <Property Name="NameEducation" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartStudy" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndStudy" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Diploma" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_Education_Worker" FromRole="Education" ToRole="Worker" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="IdGender" />
+          </Key>
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="NameGender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_Gender" FromRole="Gender" ToRole="Client" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_Worker_Gender" FromRole="Gender" ToRole="Worker" />
+        </EntityType>
+        <EntityType Name="Password">
+          <Key>
+            <PropertyRef Name="IdPassword" />
+          </Key>
+          <Property Name="IdPassword" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_Worker_Password" FromRole="Password" ToRole="Worker" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="IdPost" />
+          </Key>
+          <Property Name="IdPost" Type="Int32" Nullable="false" />
+          <Property Name="NamePost" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AmountSalaryPost" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_Worker_Post" FromRole="Post" ToRole="Worker" />
+        </EntityType>
+        <EntityType Name="Salary">
+          <Key>
+            <PropertyRef Name="IdSalary" />
+          </Key>
+          <Property Name="IdSalary" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdWorker" Type="Int32" Nullable="false" />
+          <Property Name="AmountSalary" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="DateSalary" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Worker" Relationship="Self.FK_Salary_Worker" FromRole="Salary" ToRole="Worker" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="IdService" />
+          </Key>
+          <Property Name="IdService" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameService" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="ClientContract" Relationship="Self.FK_ClientContract_Service" FromRole="Service" ToRole="ClientContract" />
+          <NavigationProperty Name="Document" Relationship="Self.FK_Document_Service" FromRole="Service" ToRole="Document" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Worker">
+          <Key>
+            <PropertyRef Name="IdWorker" />
+          </Key>
+          <Property Name="IdWorker" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdGender" Type="Int32" />
+          <Property Name="IdPost" Type="Int32" />
+          <Property Name="IdPassword" Type="Int32" />
+          <NavigationProperty Name="ClientContract" Relationship="Self.FK_ClientContract_Worker" FromRole="Worker" ToRole="ClientContract" />
+          <NavigationProperty Name="CompetenceWorker" Relationship="Self.FK_CompetenceWorker_Worker" FromRole="Worker" ToRole="CompetenceWorker" />
+          <NavigationProperty Name="Education" Relationship="Self.FK_Education_Worker" FromRole="Worker" ToRole="Education" />
+          <NavigationProperty Name="Gender" Relationship="Self.FK_Worker_Gender" FromRole="Worker" ToRole="Gender" />
+          <NavigationProperty Name="Password" Relationship="Self.FK_Worker_Password" FromRole="Worker" ToRole="Password" />
+          <NavigationProperty Name="Post" Relationship="Self.FK_Worker_Post" FromRole="Worker" ToRole="Post" />
+          <NavigationProperty Name="Salary" Relationship="Self.FK_Salary_Worker" FromRole="Worker" ToRole="Salary" />
+          <Property Name="IsDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="View_Client">
+          <Key>
+            <PropertyRef Name="Client" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="Phone" />
+          </Key>
+          <Property Name="Client" Type="String" MaxLength="152" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="NameContract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullCost" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="NameService" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="View_Contract">
+          <Key>
+            <PropertyRef Name="NameContract" />
+            <PropertyRef Name="Activity" />
+            <PropertyRef Name="FullCost" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="Client" />
+          </Key>
+          <Property Name="NameContract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Activity" Type="Boolean" Nullable="false" />
+          <Property Name="NameService" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="FullCost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Client" Type="String" MaxLength="56" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="View_Service">
+          <Key>
+            <PropertyRef Name="NameService" />
+            <PropertyRef Name="Cost" />
+          </Key>
+          <Property Name="NameService" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="DocumentTemplate" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="View_ServiceWorker">
+          <Key>
+            <PropertyRef Name="NameService" />
+            <PropertyRef Name="FullName" />
+            <PropertyRef Name="Cost" />
+            <PropertyRef Name="StartDateService" />
+            <PropertyRef Name="NameActivity" />
+            <PropertyRef Name="NameContract" />
+            <PropertyRef Name="IdWorker" />
+            <PropertyRef Name="IdService" />
+            <PropertyRef Name="IdActivityService" />
+            <PropertyRef Name="IdClientContract" />
+            <PropertyRef Name="IdPost" />
+          </Key>
+          <Property Name="NameService" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="56" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="StartDateService" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NameActivity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameContract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EndDateService" Type="DateTime" Precision="3" />
+          <Property Name="IdWorker" Type="Int32" Nullable="false" />
+          <Property Name="IdService" Type="Int32" Nullable="false" />
+          <Property Name="IdActivityService" Type="Int32" Nullable="false" />
+          <Property Name="IdClientContract" Type="Int32" Nullable="false" />
+          <Property Name="IdPost" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="View_Worker">
+          <Key>
+            <PropertyRef Name="Worker" />
+            <PropertyRef Name="NamePost" />
+            <PropertyRef Name="NameEducation" />
+            <PropertyRef Name="Diploma" />
+          </Key>
+          <Property Name="Worker" Type="String" MaxLength="56" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Competence" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="NamePost" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameEducation" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Diploma" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_Worker_T">
+          <Key>
+            <PropertyRef Name="NameGender" />
+            <PropertyRef Name="NamePost" />
+            <PropertyRef Name="NameEducation" />
+            <PropertyRef Name="StartStudy" />
+            <PropertyRef Name="EndStudy" />
+            <PropertyRef Name="Diploma" />
+            <PropertyRef Name="IdWorker" />
+          </Key>
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameGender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NamePost" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameEducation" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartStudy" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndStudy" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Diploma" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdWorker" Type="Int32" Nullable="false" />
+          <Property Name="IdGender" Type="Int32" />
+          <Property Name="IdPassword" Type="Int32" />
+          <Property Name="IdPost" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_ClientContract_ActivityService">
+          <End Role="ActivityService" Type="Self.ActivityService" Multiplicity="1" />
+          <End Role="ClientContract" Type="Self.ClientContract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActivityService">
+              <PropertyRef Name="IdActivityService" />
+            </Principal>
+            <Dependent Role="ClientContract">
+              <PropertyRef Name="IDActivityService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contract_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="IdClient" />
+            </Principal>
+            <Dependent Role="Contract">
+              <PropertyRef Name="IdClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientContract_Contract">
+          <End Role="Contract" Type="Self.Contract" Multiplicity="1" />
+          <End Role="ClientContract" Type="Self.ClientContract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contract">
+              <PropertyRef Name="IdContract" />
+            </Principal>
+            <Dependent Role="ClientContract">
+              <PropertyRef Name="IdContract" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientContract_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="ClientContract" Type="Self.ClientContract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="IdService" />
+            </Principal>
+            <Dependent Role="ClientContract">
+              <PropertyRef Name="IdService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClientContract_Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="ClientContract" Type="Self.ClientContract" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="IdWorker" />
+            </Principal>
+            <Dependent Role="ClientContract">
+              <PropertyRef Name="IdWorker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompetenceCheck_ClientContract">
+          <End Role="ClientContract" Type="Self.ClientContract" Multiplicity="0..1" />
+          <End Role="CompetenceCheck" Type="Self.CompetenceCheck" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClientContract">
+              <PropertyRef Name="IdClientContract" />
+            </Principal>
+            <Dependent Role="CompetenceCheck">
+              <PropertyRef Name="IdClientContract" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompetenceCheck_Competence">
+          <End Role="Competence" Type="Self.Competence" Multiplicity="0..1" />
+          <End Role="CompetenceCheck" Type="Self.CompetenceCheck" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competence">
+              <PropertyRef Name="IdCompetence" />
+            </Principal>
+            <Dependent Role="CompetenceCheck">
+              <PropertyRef Name="IdCompetence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompetenceWorker_Competence">
+          <End Role="Competence" Type="Self.Competence" Multiplicity="1" />
+          <End Role="CompetenceWorker" Type="Self.CompetenceWorker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Competence">
+              <PropertyRef Name="IdCompetence" />
+            </Principal>
+            <Dependent Role="CompetenceWorker">
+              <PropertyRef Name="IdCompetence" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompetenceWorker_Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="CompetenceWorker" Type="Self.CompetenceWorker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="IdWorker" />
+            </Principal>
+            <Dependent Role="CompetenceWorker">
+              <PropertyRef Name="IdWorker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Document_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Document" Type="Self.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="IdService" />
+            </Principal>
+            <Dependent Role="Document">
+              <PropertyRef Name="IdService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Education_Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="Education" Type="Self.Education" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="IdWorker" />
+            </Principal>
+            <Dependent Role="Education">
+              <PropertyRef Name="IdWorker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Worker_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="IdGender" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="IdGender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Worker_Password">
+          <End Role="Password" Type="Self.Password" Multiplicity="0..1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Password">
+              <PropertyRef Name="IdPassword" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="IdPassword" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Worker_Post">
+          <End Role="Post" Type="Self.Post" Multiplicity="0..1" />
+          <End Role="Worker" Type="Self.Worker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="IdPost" />
+            </Principal>
+            <Dependent Role="Worker">
+              <PropertyRef Name="IdPost" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Salary_Worker">
+          <End Role="Worker" Type="Self.Worker" Multiplicity="1" />
+          <End Role="Salary" Type="Self.Salary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Worker">
+              <PropertyRef Name="IdWorker" />
+            </Principal>
+            <Dependent Role="Salary">
+              <PropertyRef Name="IdWorker" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ActivityService" EntityType="Self.ActivityService" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="ClientContract" EntityType="Self.ClientContract" />
+          <EntitySet Name="Competence" EntityType="Self.Competence" />
+          <EntitySet Name="CompetenceCheck" EntityType="Self.CompetenceCheck" />
+          <EntitySet Name="CompetenceWorker" EntityType="Self.CompetenceWorker" />
+          <EntitySet Name="Contract" EntityType="Self.Contract" />
+          <EntitySet Name="Document" EntityType="Self.Document" />
+          <EntitySet Name="Education" EntityType="Self.Education" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" />
+          <EntitySet Name="Password" EntityType="Self.Password" />
+          <EntitySet Name="Post" EntityType="Self.Post" />
+          <EntitySet Name="Salary" EntityType="Self.Salary" />
+          <EntitySet Name="Service" EntityType="Self.Service" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Worker" EntityType="Self.Worker" />
+          <EntitySet Name="View_Client" EntityType="Self.View_Client" />
+          <EntitySet Name="View_Contract" EntityType="Self.View_Contract" />
+          <EntitySet Name="View_Service" EntityType="Self.View_Service" />
+          <EntitySet Name="View_ServiceWorker" EntityType="Self.View_ServiceWorker" />
+          <EntitySet Name="View_Worker" EntityType="Self.View_Worker" />
+          <EntitySet Name="VW_Worker_T" EntityType="Self.VW_Worker_T" />
+          <AssociationSet Name="FK_ClientContract_ActivityService" Association="Self.FK_ClientContract_ActivityService">
+            <End Role="ActivityService" EntitySet="ActivityService" />
+            <End Role="ClientContract" EntitySet="ClientContract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Gender" Association="Self.FK_Client_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contract_Client" Association="Self.FK_Contract_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Contract" EntitySet="Contract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientContract_Contract" Association="Self.FK_ClientContract_Contract">
+            <End Role="Contract" EntitySet="Contract" />
+            <End Role="ClientContract" EntitySet="ClientContract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientContract_Service" Association="Self.FK_ClientContract_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="ClientContract" EntitySet="ClientContract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClientContract_Worker" Association="Self.FK_ClientContract_Worker">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="ClientContract" EntitySet="ClientContract" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompetenceCheck_ClientContract" Association="Self.FK_CompetenceCheck_ClientContract">
+            <End Role="ClientContract" EntitySet="ClientContract" />
+            <End Role="CompetenceCheck" EntitySet="CompetenceCheck" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompetenceCheck_Competence" Association="Self.FK_CompetenceCheck_Competence">
+            <End Role="Competence" EntitySet="Competence" />
+            <End Role="CompetenceCheck" EntitySet="CompetenceCheck" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompetenceWorker_Competence" Association="Self.FK_CompetenceWorker_Competence">
+            <End Role="Competence" EntitySet="Competence" />
+            <End Role="CompetenceWorker" EntitySet="CompetenceWorker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompetenceWorker_Worker" Association="Self.FK_CompetenceWorker_Worker">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="CompetenceWorker" EntitySet="CompetenceWorker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Document_Service" Association="Self.FK_Document_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Document" EntitySet="Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Education_Worker" Association="Self.FK_Education_Worker">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="Education" EntitySet="Education" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Worker_Gender" Association="Self.FK_Worker_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Worker" EntitySet="Worker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Worker_Password" Association="Self.FK_Worker_Password">
+            <End Role="Password" EntitySet="Password" />
+            <End Role="Worker" EntitySet="Worker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Worker_Post" Association="Self.FK_Worker_Post">
+            <End Role="Post" EntitySet="Post" />
+            <End Role="Worker" EntitySet="Worker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Salary_Worker" Association="Self.FK_Salary_Worker">
+            <End Role="Worker" EntitySet="Worker" />
+            <End Role="Salary" EntitySet="Salary" />
+          </AssociationSet>
+          <FunctionImport Name="ContractService" IsComposable="true" ReturnType="Collection(Belous914_Kyrs1Model.ContractService_Result)">
+          <Parameter Name="NameServace" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ContractView" IsComposable="true" ReturnType="Collection(Belous914_Kyrs1Model.ContractView_Result)">
+          <Parameter Name="IdContract" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ServiceView" IsComposable="true" ReturnType="Collection(Belous914_Kyrs1Model.ServiceView_Result)">
+          <Parameter Name="IdContract" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PR_Contract" ReturnType="Collection(Belous914_Kyrs1Model.PR_Contract_Result)">
+            <Parameter Name="StartDate" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="Pr_Salary" />
+          <FunctionImport Name="PR_ServiceClient" ReturnType="Collection(Belous914_Kyrs1Model.PR_ServiceClient_Result)">
+          <Parameter Name="nameService" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PR_ServiceName" ReturnType="Collection(Belous914_Kyrs1Model.PR_ServiceName_Result)">
+          <Parameter Name="nameService" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Belous914_Kyrs1Model.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Belous914_Kyrs1Model.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+        <ComplexType Name="PR_Contract_Result">
+          <Property Type="String" Name="NameContract" Nullable="false" MaxLength="50" />
+          <Property Type="Boolean" Name="Activity" Nullable="false" />
+          <Property Type="String" Name="NameService" Nullable="true" MaxLength="4000" />
+          <Property Type="Decimal" Name="FullCost" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Client" Nullable="false" MaxLength="56" />
+        </ComplexType>
+        <ComplexType Name="PR_ServiceClient_Result">
+          <Property Type="String" Name="Client" Nullable="false" MaxLength="56" />
+          <Property Type="String" Name="NameContract" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="NameService" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="PR_ServiceName_Result">
+          <Property Type="Int32" Name="C_Количество_раз__которое_услуга_была_предоставлена" Nullable="true" />
+          <Property Type="Decimal" Name="Общая_сумма_от_заданной_услуги" Nullable="true" Precision="38" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Belous914_Kyrs1ModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="ActivityService">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.ActivityService">
+              <MappingFragment StoreEntitySet="ActivityService">
+                <ScalarProperty Name="IdActivityService" ColumnName="IdActivityService" />
+                <ScalarProperty Name="NameActivity" ColumnName="NameActivity" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientContract">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.ClientContract">
+              <MappingFragment StoreEntitySet="ClientContract">
+                <ScalarProperty Name="IdClientContract" ColumnName="IdClientContract" />
+                <ScalarProperty Name="IdContract" ColumnName="IdContract" />
+                <ScalarProperty Name="IdService" ColumnName="IdService" />
+                <ScalarProperty Name="IdWorker" ColumnName="IdWorker" />
+                <ScalarProperty Name="StartDateService" ColumnName="StartDateService" />
+                <ScalarProperty Name="EndDateService" ColumnName="EndDateService" />
+                <ScalarProperty Name="IDActivityService" ColumnName="IDActivityService" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Competence">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.Competence">
+              <MappingFragment StoreEntitySet="Competence">
+                <ScalarProperty Name="IdCompetence" ColumnName="IdCompetence" />
+                <ScalarProperty Name="NameCompetence" ColumnName="NameCompetence" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompetenceCheck">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.CompetenceCheck">
+              <MappingFragment StoreEntitySet="CompetenceCheck">
+                <ScalarProperty Name="IdCompetenceCheck" ColumnName="IdCompetenceCheck" />
+                <ScalarProperty Name="IdClientContract" ColumnName="IdClientContract" />
+                <ScalarProperty Name="IdCompetence" ColumnName="IdCompetence" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompetenceWorker">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.CompetenceWorker">
+              <MappingFragment StoreEntitySet="CompetenceWorker">
+                <ScalarProperty Name="IdCompetenceWorker" ColumnName="IdCompetenceWorker" />
+                <ScalarProperty Name="IdWorker" ColumnName="IdWorker" />
+                <ScalarProperty Name="IdCompetence" ColumnName="IdCompetence" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contract">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.Contract">
+              <MappingFragment StoreEntitySet="Contract">
+                <ScalarProperty Name="IdContract" ColumnName="IdContract" />
+                <ScalarProperty Name="NameContract" ColumnName="NameContract" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Activity" ColumnName="Activity" />
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="Report" ColumnName="Report" />
+                <ScalarProperty Name="FullCost" ColumnName="FullCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Document">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.Document">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="IdDocument" ColumnName="IdDocument" />
+                <ScalarProperty Name="IdService" ColumnName="IdService" />
+                <ScalarProperty Name="DocumentTemplate" ColumnName="DocumentTemplate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Education">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.Education">
+              <MappingFragment StoreEntitySet="Education">
+                <ScalarProperty Name="IdEducation" ColumnName="IdEducation" />
+                <ScalarProperty Name="IdWorker" ColumnName="IdWorker" />
+                <ScalarProperty Name="NameEducation" ColumnName="NameEducation" />
+                <ScalarProperty Name="StartStudy" ColumnName="StartStudy" />
+                <ScalarProperty Name="EndStudy" ColumnName="EndStudy" />
+                <ScalarProperty Name="Diploma" ColumnName="Diploma" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="NameGender" ColumnName="NameGender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Password">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.Password">
+              <MappingFragment StoreEntitySet="Password">
+                <ScalarProperty Name="IdPassword" ColumnName="IdPassword" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password1" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Post">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.Post">
+              <MappingFragment StoreEntitySet="Post">
+                <ScalarProperty Name="IdPost" ColumnName="IdPost" />
+                <ScalarProperty Name="NamePost" ColumnName="NamePost" />
+                <ScalarProperty Name="AmountSalaryPost" ColumnName="AmountSalaryPost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Salary">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.Salary">
+              <MappingFragment StoreEntitySet="Salary">
+                <ScalarProperty Name="IdSalary" ColumnName="IdSalary" />
+                <ScalarProperty Name="IdWorker" ColumnName="IdWorker" />
+                <ScalarProperty Name="AmountSalary" ColumnName="AmountSalary" />
+                <ScalarProperty Name="DateSalary" ColumnName="DateSalary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Service">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="IdService" ColumnName="IdService" />
+                <ScalarProperty Name="NameService" ColumnName="NameService" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Worker">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.Worker">
+              <MappingFragment StoreEntitySet="Worker">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="IdWorker" ColumnName="IdWorker" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="IdPost" ColumnName="IdPost" />
+                <ScalarProperty Name="IdPassword" ColumnName="IdPassword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Client">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.View_Client">
+              <MappingFragment StoreEntitySet="View_Client">
+                <ScalarProperty Name="Client" ColumnName="Client" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="NameContract" ColumnName="NameContract" />
+                <ScalarProperty Name="FullCost" ColumnName="FullCost" />
+                <ScalarProperty Name="NameService" ColumnName="NameService" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Contract">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.View_Contract">
+              <MappingFragment StoreEntitySet="View_Contract">
+                <ScalarProperty Name="NameContract" ColumnName="NameContract" />
+                <ScalarProperty Name="Activity" ColumnName="Activity" />
+                <ScalarProperty Name="NameService" ColumnName="NameService" />
+                <ScalarProperty Name="FullCost" ColumnName="FullCost" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Client" ColumnName="Client" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Service">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.View_Service">
+              <MappingFragment StoreEntitySet="View_Service">
+                <ScalarProperty Name="NameService" ColumnName="NameService" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="DocumentTemplate" ColumnName="DocumentTemplate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_ServiceWorker">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.View_ServiceWorker">
+              <MappingFragment StoreEntitySet="View_ServiceWorker">
+                <ScalarProperty Name="IdPost" ColumnName="IdPost" />
+                <ScalarProperty Name="IdClientContract" ColumnName="IdClientContract" />
+                <ScalarProperty Name="IdActivityService" ColumnName="IdActivityService" />
+                <ScalarProperty Name="IdService" ColumnName="IdService" />
+                <ScalarProperty Name="NameService" ColumnName="NameService" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="StartDateService" ColumnName="StartDateService" />
+                <ScalarProperty Name="NameActivity" ColumnName="NameActivity" />
+                <ScalarProperty Name="NameContract" ColumnName="NameContract" />
+                <ScalarProperty Name="EndDateService" ColumnName="EndDateService" />
+                <ScalarProperty Name="IdWorker" ColumnName="IdWorker" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Worker">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.View_Worker">
+              <MappingFragment StoreEntitySet="View_Worker">
+                <ScalarProperty Name="Worker" ColumnName="Worker" />
+                <ScalarProperty Name="Competence" ColumnName="Competence" />
+                <ScalarProperty Name="NamePost" ColumnName="NamePost" />
+                <ScalarProperty Name="NameEducation" ColumnName="NameEducation" />
+                <ScalarProperty Name="Diploma" ColumnName="Diploma" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_Worker_T">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.VW_Worker_T">
+              <MappingFragment StoreEntitySet="VW_Worker_T">
+                <ScalarProperty Name="IdPost" ColumnName="IdPost" />
+                <ScalarProperty Name="IdPassword" ColumnName="IdPassword" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="IdWorker" ColumnName="IdWorker" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="NameGender" ColumnName="NameGender" />
+                <ScalarProperty Name="NamePost" ColumnName="NamePost" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="NameEducation" ColumnName="NameEducation" />
+                <ScalarProperty Name="StartStudy" ColumnName="StartStudy" />
+                <ScalarProperty Name="EndStudy" ColumnName="EndStudy" />
+                <ScalarProperty Name="Diploma" ColumnName="Diploma" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionName="Хранилище Belous914_Kyrs1Model.ContractService" FunctionImportName="ContractService">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Belous914_Kyrs1Model.ContractService_Result">
+                <ScalarProperty Name="NameContract" ColumnName="NameContract" />
+                <ScalarProperty Name="FullCost" ColumnName="FullCost" />
+                <ScalarProperty Name="NameService" ColumnName="NameService" />
+                <ScalarProperty Name="Client" ColumnName="Client" />
+                <ScalarProperty Name="Worker" ColumnName="Worker" />
+                <ScalarProperty Name="StartDateService" ColumnName="StartDateService" />
+                <ScalarProperty Name="EndDateService" ColumnName="EndDateService" />
+                <ScalarProperty Name="NameActivityService" ColumnName="NameActivityService" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="Хранилище Belous914_Kyrs1Model.ContractView" FunctionImportName="ContractView">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Belous914_Kyrs1Model.ContractView_Result">
+                <ScalarProperty Name="NameContract" ColumnName="NameContract" />
+                <ScalarProperty Name="FullCost" ColumnName="FullCost" />
+                <ScalarProperty Name="Report" ColumnName="Report" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Client" ColumnName="Client" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="Хранилище Belous914_Kyrs1Model.ServiceView" FunctionImportName="ServiceView">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Belous914_Kyrs1Model.ServiceView_Result">
+                <ScalarProperty Name="NameService" ColumnName="NameService" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="StartDateService" ColumnName="StartDateService" />
+                <ScalarProperty Name="EndDateService" ColumnName="EndDateService" />
+                <ScalarProperty Name="NameActivity" ColumnName="NameActivity" />
+                <ScalarProperty Name="Worker" ColumnName="Worker" />
+                <ScalarProperty Name="Competence" ColumnName="Competence" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PR_Contract" FunctionName="Хранилище Belous914_Kyrs1Model.PR_Contract">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Belous914_Kyrs1Model.PR_Contract_Result">
+                <ScalarProperty Name="NameContract" ColumnName="NameContract" />
+                <ScalarProperty Name="Activity" ColumnName="Activity" />
+                <ScalarProperty Name="NameService" ColumnName="NameService" />
+                <ScalarProperty Name="FullCost" ColumnName="FullCost" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Client" ColumnName="Client" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Pr_Salary" FunctionName="Хранилище Belous914_Kyrs1Model.Pr_Salary" />
+          <FunctionImportMapping FunctionImportName="PR_ServiceClient" FunctionName="Хранилище Belous914_Kyrs1Model.PR_ServiceClient">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Belous914_Kyrs1Model.PR_ServiceClient_Result">
+                <ScalarProperty Name="Client" ColumnName="Client" />
+                <ScalarProperty Name="NameContract" ColumnName="NameContract" />
+                <ScalarProperty Name="NameService" ColumnName="NameService" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PR_ServiceName" FunctionName="Хранилище Belous914_Kyrs1Model.PR_ServiceName">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Belous914_Kyrs1Model.PR_ServiceName_Result">
+                <ScalarProperty Name="C_Количество_раз__которое_услуга_была_предоставлена" ColumnName=" Количество раз, которое услуга была предоставлена" />
+                <ScalarProperty Name="Общая_сумма_от_заданной_услуги" ColumnName="Общая сумма от заданной услуги" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище Belous914_Kyrs1Model.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище Belous914_Kyrs1Model.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище Belous914_Kyrs1Model.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище Belous914_Kyrs1Model.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Belous914_Kyrs1Model.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище Belous914_Kyrs1Model.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Belous914_Kyrs1Model.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище Belous914_Kyrs1Model.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище Belous914_Kyrs1Model.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

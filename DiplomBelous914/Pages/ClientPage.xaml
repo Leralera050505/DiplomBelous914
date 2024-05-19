@@ -1,0 +1,110 @@
+﻿<Page x:Class="DiplomBelous914.Pages.ClientPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DiplomBelous914.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="840"
+      Title="ClientPage">
+
+    <Grid>
+        <WrapPanel>
+            <TextBlock Text="Поиск"
+                       Margin="10"
+                       FontSize="15"/>
+
+            <TextBox x:Name="TxbSearch"
+                     Width="200"
+                     Height="25"
+                     FontSize="18" 
+                     VerticalContentAlignment="Center"
+                     TextChanged="TxbSearch_TextChanged"
+                 />
+
+            <TextBlock Text="Сортировка"
+                        Margin="10"
+                       FontSize="15"/>
+            <ComboBox x:Name="CmbSort"
+                      SelectionChanged="CmbSort_SelectionChanged"
+                      Width="188"
+                      Height="25" 
+                    
+                     />
+            <Button 
+                Content=" Добавить "
+                x:Name="btnAdd"
+                Background="#FF9E73"
+                Style="{StaticResource ButtonStileBa}"
+                Margin="8 0" Click="btnAdd_Click"
+               >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button
+                x:Name="btnEditClient"
+                Content=" Изменить "
+                Background="#FF9E73"
+                Style="{StaticResource ButtonStileBa}"
+                Margin="8 0" Click="btnEditClient_Click" 
+               >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button 
+                x:Name="btnDelete"
+                Content=" Удалить "
+                Margin="8 0"
+                Background="#FF9E73"
+                Style="{StaticResource ButtonStileBa}"
+                Click="btnDelete_Click"
+               >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button 
+                  x:Name="btnUpdate"
+                  Margin="8 0"
+                  Width="35" 
+                  Height="30" Click="btnUpdate_Click" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"></Setter>
+                    </Style>
+                </Button.Resources>
+                <Button.Background>
+                    <ImageBrush ImageSource="/Res/Update.png"/>
+                </Button.Background>
+            </Button>
+        </WrapPanel>
+        <ListView x:Name="listviewClient"  
+                 
+                  Margin="0 50 0 0" >
+            <ListView.View >
+                <GridView >
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=FirstName}" 
+                      Header="Имя" Width="100" />
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=LastName}" 
+                      Header="Фамилия" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Patronymic}" 
+                      Header="Отчесвто" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Phone}" 
+                      Header="Телефон" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path= Email}" 
+                      Header="Email" Width="120"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+    </Grid>
+</Page>

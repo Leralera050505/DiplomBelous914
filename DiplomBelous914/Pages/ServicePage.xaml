@@ -1,0 +1,86 @@
+﻿<Page x:Class="DiplomBelous914.Pages.ServicePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DiplomBelous914.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="850"
+      Title="ServicePage">
+   
+    <Grid>
+        <WrapPanel>
+            <TextBlock Text="Поиск"
+                Margin="10"
+                FontSize="15"/>
+
+            <TextBox x:Name="TxbSearch"
+              Width="200"
+              Height="25"
+              FontSize="18" 
+              VerticalContentAlignment="Center"
+              TextChanged="TxbSearch_TextChanged"
+          />
+
+            <TextBlock Text="Сортировка"
+                 Margin="10"
+                FontSize="15"/>
+            <ComboBox x:Name="CmbSort"
+               SelectionChanged="CmbSort_SelectionChanged"
+               Width="200"
+               Height="25" 
+              />
+            <Button 
+             Content=" Изменить активность"
+             Margin="8 0"
+             x:Name="btnEditStatus"
+             Background="#FF9E73"
+             Click="btnEditStatus_Click"
+             Style="{StaticResource ButtonStileBa}"
+        >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"></Setter>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button 
+       x:Name="btnUpdate"
+       Margin="8 0"
+       Width="35" 
+       Height="30" Click="btnUpdate_Click" >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="20"></Setter>
+                    </Style>
+                </Button.Resources>
+                <Button.Background>
+                    <ImageBrush ImageSource="/Res/Update.png"/>
+                </Button.Background>
+            </Button>
+        </WrapPanel>
+        <ListView x:Name="listviewService"
+          
+           Margin="0 50 0 0" >
+            <ListView.View >
+                <GridView >
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=NameService}" 
+                Header="Название" Width="150"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=FullName}" 
+               Header="Работник" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=NameActivity}" 
+               Header="Состояние" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Cost}" 
+               Header="Цена" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=NameContract}" 
+               Header="Контракт" Width="120"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=StartDateService, StringFormat='yyyy-MM-dd'}" 
+                                    
+               Header="Дата создания" Width="120"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=EndDateService, StringFormat='yyyy-MM-dd'}" 
+               Header="Дата окнончания" Width="120"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Page>

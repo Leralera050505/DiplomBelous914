@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="47f89de86db7455da391a95a6c81091a" Name="Diagram1">
+        <EntityTypeShape EntityType="Belous914_Kyrs1Model.ActivityService" Width="1.5" PointX="5.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Belous914_Kyrs1Model.Client" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Belous914_Kyrs1Model.ClientContract" Width="1.5" PointX="7.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="Belous914_Kyrs1Model.Competence" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Belous914_Kyrs1Model.CompetenceCheck" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Belous914_Kyrs1Model.CompetenceWorker" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Belous914_Kyrs1Model.Contract" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Belous914_Kyrs1Model.Document" Width="1.5" PointX="7.5" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Belous914_Kyrs1Model.Education" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Belous914_Kyrs1Model.Gender" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Belous914_Kyrs1Model.Password" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Belous914_Kyrs1Model.Post" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Belous914_Kyrs1Model.Salary" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="Belous914_Kyrs1Model.Service" Width="1.5" PointX="5.25" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="Belous914_Kyrs1Model.sysdiagrams" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="Belous914_Kyrs1Model.Worker" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Belous914_Kyrs1Model.View_Client" Width="1.5" PointX="9.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="Belous914_Kyrs1Model.View_Contract" Width="1.5" PointX="9.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="Belous914_Kyrs1Model.View_Service" Width="1.5" PointX="9.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Belous914_Kyrs1Model.View_ServiceWorker" Width="1.5" PointX="11.875" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Belous914_Kyrs1Model.View_Worker" Width="1.5" PointX="11.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Belous914_Kyrs1Model.VW_Worker_T" Width="1.5" PointX="12.625" PointY="8.5" IsExpanded="true" />
+        <AssociationConnector Association="Belous914_Kyrs1Model.FK_ClientContract_ActivityService" ManuallyRouted="false" />
+        <AssociationConnector Association="Belous914_Kyrs1Model.FK_Client_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="Belous914_Kyrs1Model.FK_Contract_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="Belous914_Kyrs1Model.FK_ClientContract_Contract" ManuallyRouted="false" />
+        <AssociationConnector Association="Belous914_Kyrs1Model.FK_ClientContract_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="Belous914_Kyrs1Model.FK_ClientContract_Worker" ManuallyRouted="false" />
+        <AssociationConnector Association="Belous914_Kyrs1Model.FK_CompetenceCheck_ClientContract" ManuallyRouted="false" />
+        <AssociationConnector Association="Belous914_Kyrs1Model.FK_CompetenceCheck_Competence" ManuallyRouted="false" />
+        <AssociationConnector Association="Belous914_Kyrs1Model.FK_CompetenceWorker_Competence" ManuallyRouted="false" />
+        <AssociationConnector Association="Belous914_Kyrs1Model.FK_CompetenceWorker_Worker" ManuallyRouted="false" />
+        <AssociationConnector Association="Belous914_Kyrs1Model.FK_Document_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="Belous914_Kyrs1Model.FK_Education_Worker" ManuallyRouted="false" />
+        <AssociationConnector Association="Belous914_Kyrs1Model.FK_Worker_Gender" ManuallyRouted="false" />
+        <AssociationConnector Association="Belous914_Kyrs1Model.FK_Worker_Password" ManuallyRouted="false" />
+        <AssociationConnector Association="Belous914_Kyrs1Model.FK_Worker_Post" ManuallyRouted="false" />
+        <AssociationConnector Association="Belous914_Kyrs1Model.FK_Salary_Worker" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
