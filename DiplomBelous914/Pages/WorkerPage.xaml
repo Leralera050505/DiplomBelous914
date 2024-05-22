@@ -47,9 +47,10 @@
             </Button>
             <Button 
              Content=" Изменить "
+                x:Name="btnEditWorker"
              Margin="8 0"
              Background="#FF9E73"
-             Style="{StaticResource ButtonStileBa}" Click="Button_Click"
+             Style="{StaticResource ButtonStileBa}" Click="btnEditWorker_Click"
             >
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -74,7 +75,7 @@
                    x:Name="btnUpdate"
                    Margin="8 0"
                    Width="35" 
-                   Height="30" Click="btnUpdate_Click" >
+                   Height="30" Click="btnUpdate_Click_2" >
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"></Setter>

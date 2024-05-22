@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiplomBelous914.Windows"
         mc:Ignorable="d"
-        Title="AddClientWindow" Height="620" Width="800"
+        Title="AddClientWindow" Height="650" Width="800"
          WindowStartupLocation="CenterScreen">
     <Grid>
 
@@ -90,17 +90,38 @@
            Margin="0 10 0 0" 
            Background="#FFF1B189"/>
             <Button
-                x:Name="btnSave"
-            Content="Сохранить"
+           x:Name="btnSave"
+           Content="Сохранить"
            FontSize="20"
            Width="200"
-           Margin="0 10 0 0" Click="btnSave_Click" />
+           Margin="0 10 0 0" Click="btnSave_Click"         
+           Background="#FF9E73" 
+           Style="{StaticResource  ButtonStileBa}">
+
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+
+                </Button.Resources>
+
+            </Button>
             <Button
                 x:Name="btnClose"
            Content="Отмена"
            FontSize="20"
            Width="200"
-           Margin="0 10 0 0" Click="btnClose_Click" />
+           Margin="0 10 0 0" Click="btnClose_Click" 
+                Background="#FF9E73" 
+            Style="{StaticResource  ButtonStileBa}">
+
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
         </StackPanel>
 
         <Image x:Name="___Res_1_png" Margin="-173,-38,0,0"
@@ -118,12 +139,12 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="___Res_1_png_Копировать" Margin="-154,383,0,0"
+        <Image x:Name="___Res_1_png_Копировать" Margin="-150,396,0,0"
         Source="/Res/1.png" 
         Stretch="Fill" 
         RenderTransformOrigin="0.399,1.319"
         HorizontalAlignment="Left" 
-        Width="510" Height="66" VerticalAlignment="Top" Opacity="0.5">
+        Width="554" Height="66" VerticalAlignment="Top" Opacity="0.5">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

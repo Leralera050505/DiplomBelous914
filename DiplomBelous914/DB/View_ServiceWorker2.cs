@@ -12,14 +12,19 @@ namespace DiplomBelous914.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class View_Contract
+    public partial class View_ServiceWorker2
     {
-        public string NameContract { get; set; }
-        public bool Activity { get; set; }
+        public int IdService { get; set; }
         public string NameService { get; set; }
-        public Nullable<decimal> FullCost { get; set; }
-        public System.DateTime StartDate { get; set; }
-        public string Client { get; set; }
-        public int IdContract { get; set; }
+        public int IdActivityService { get; set; }
+        public string FullName { get; set; }
+        public int IdPost { get; set; }
+        public decimal Cost { get; set; }
+        public System.DateTime StartDateService { get; set; }
+        public string NameActivity { get; set; }
+        public string NameContract { get; set; }
+        public Nullable<System.DateTime> EndDateService { get; set; }
+        public int IdWorker { get; set; }
+        public int IdClientContract { get; set; }
     }
 }

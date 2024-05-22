@@ -25,7 +25,6 @@ namespace DiplomBelous914.Windows
     public partial class EditServiceWindow : Window
     {
         private  int test;
-        View_ServiceWorker View_ServiceWorker1;
         private ClientContract editClientContract;
         public EditServiceWindow(View_ServiceWorker view_ServiceWorker)    
         {
@@ -33,7 +32,6 @@ namespace DiplomBelous914.Windows
             InitializeComponent();
             try
             {
-                View_ServiceWorker1 = view_ServiceWorker;
                 TbName.Text = view_ServiceWorker.NameService;
                 TbContract.Text = view_ServiceWorker.NameContract;
                 TbCost.Text = Convert.ToString( view_ServiceWorker.Cost);
@@ -41,8 +39,8 @@ namespace DiplomBelous914.Windows
                 cmbActive.ItemsSource = Context.ActivityService.ToList();
                 cmbActive.DisplayMemberPath = "NameActivity";
                 cmbActive.SelectedItem = Context.ActivityService.ToList().Where(i => i.IdActivityService == view_ServiceWorker.IdActivityService).FirstOrDefault();
-                datePickerStart.Text = view_ServiceWorker.StartDateService.ToString();
-                datePickerEnd.Text = view_ServiceWorker.EndDateService.ToString();
+                datePickerStart.Text = Convert.ToString(view_ServiceWorker.StartDateService);
+                datePickerEnd.Text = Convert.ToString(view_ServiceWorker.EndDateService);
 
                 test = view_ServiceWorker.IdClientContract;
 
@@ -57,8 +55,9 @@ namespace DiplomBelous914.Windows
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-
+            editClientContract.EndDateService = Convert.ToDateTime(datePickerEnd.Text);
             editClientContract.IDActivityService = (cmbActive.SelectedItem as ActivityService).IdActivityService;
+         
             Context.SaveChanges();
             MessageBox.Show("Услуга сохранена");
             this.Close();

@@ -26,11 +26,11 @@ namespace DiplomBelous914.DB
         public int IdWorker { get; set; }
         public System.DateTime StartDateService { get; set; }
         public Nullable<System.DateTime> EndDateService { get; set; }
-        public int IDActivityService { get; set; }
+        public Nullable<int> IDActivityService { get; set; }
         public string Comment { get; set; }
     
         public virtual ActivityService ActivityService { get; set; }
-        public virtual Contract Contract { get; set; }
+        public virtual Contractt Contractt { get; set; }
         public virtual Service Service { get; set; }
         public virtual Worker Worker { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

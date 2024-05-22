@@ -5,10 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiplomBelous914.Windows"
         mc:Ignorable="d"
-        Title="AddContractWindow" Height="620" Width="800">
+        Title="AddContractWindow" Height="570" Width="800"
+          WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="51*"/>
+            <ColumnDefinition Width="29*"/>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.RowSpan="2">
+        <StackPanel Grid.ColumnSpan="2">
             <TextBlock 
          Text="Контракт"
          FontSize="25"
@@ -20,7 +25,7 @@
          Text="Название"
          Margin="0 10 0 0 "/>
             <TextBox
-         x:Name="TbFirstName"
+         x:Name="TbName"
          HorizontalAlignment="Center"
          FontSize="20"
          Width="200"
@@ -29,79 +34,164 @@
             <TextBlock
          HorizontalAlignment="Center"
          FontSize="20"
-         Text="Фамилия"
+         Text="Дата"
          Margin="0 10 0 0 "/>
+            <DatePicker x:Name="datePicker" Width="194"/>
+            <TextBlock
+            HorizontalAlignment="Center"
+            FontSize="20" Text="Работник"/>
+            <ComboBox Width="194" x:Name="cmbFIOClient" />
+            <!--<TextBlock
+        HorizontalAlignment="Center"
+        FontSize="20"
+                
+        Text="Фамилия клиента"
+        Margin="0 10 0 0 "/>
             <TextBox
-         x:Name="TbLastName"
-         HorizontalAlignment="Center"
-         FontSize="20"
-         Width="200"
-         Margin="0 10 0 0" 
-         Background="#FFF1B189"/>
-            <TextBlock
-         HorizontalAlignment="Center"
-         FontSize="20"
-         Text="Отчество"
-         Margin="0 10 0 0 "/>
-            <TextBox
-         x:Name="TbPatronymic"
-         HorizontalAlignment="Center"
-         FontSize="20"
-         Width="200"
-         Margin="0 10 0 0" 
-         Background="#FFF1B189"/>
-            <TextBlock
-         HorizontalAlignment="Center"
-         FontSize="20"
-         Text="Пол"
-         Margin="0 10 0 0 "/>
-            <ComboBox
-             Name="cmbGender"
-         HorizontalAlignment="Center"
-         FontSize="20"
-         Text="Пол"
-         Margin="0 10 0 0 "
-         Width="200" BorderBrush="#FFF1B189"
-         />
+        x:Name="TbFirstName"
+        HorizontalAlignment="Center"
+        FontSize="20"
+        Width="200"
+        Margin="0 10 0 0" 
+        Background="#FFF1B189"/>
 
             <TextBlock
         HorizontalAlignment="Center"
         FontSize="20"
-        Text="Телефон"
+                
+        Text="Имя клиента"
         Margin="0 10 0 0 "/>
             <TextBox
-        x:Name="TbPhone"
+        
         HorizontalAlignment="Center"
         FontSize="20"
         Width="200"
+                x:Name="TbLastName"
         Margin="0 10 0 0" 
         Background="#FFF1B189"/>
+
             <TextBlock
         HorizontalAlignment="Center"
         FontSize="20"
-        Text="Email"
+                
+        Text="Отчество  клиента"
         Margin="0 10 0 0 "/>
             <TextBox
-          x:Name="TbEmail"
+
         HorizontalAlignment="Center"
         FontSize="20"
         Width="200"
+                x:Name="TbPatronymic"
         Margin="0 10 0 0" 
-        Background="#FFF1B189"/>
+        Background="#FFF1B189"/>-->
+            
+
+
             <Button
              x:Name="btnSave"
          Content="Сохранить"
         FontSize="20"
         Width="200"
-        Margin="0 10 0 0"/>
+        Margin="0 10 0 0" Click="btnSave_Click"
+        Background="#FF9E73" 
+        Style="{StaticResource  ButtonStileBa}" Height="35">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
             <Button
              x:Name="btnClose"
         Content="Отмена"
         FontSize="20"
         Width="200"
-        Margin="0 10 0 0"/>
+        Margin="0 10 0 0"
+        Background="#FF9E73" 
+        Style="{StaticResource  ButtonStileBa}" Height="35">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </StackPanel>
+        <StackPanel Grid.Column="2" >
 
+            <TextBlock
+                Margin="0 50 0 0"
+            HorizontalAlignment="Center"
+            FontSize="20" Text="Услуга"/>
+            <ComboBox Width="194" x:Name="cmbService" />
+            <TextBlock
+            HorizontalAlignment="Center"
+            FontSize="20"
+            Text="Дата"
+            Margin="0 10 0 0 "/>
+            <DatePicker x:Name="StartdatePicker" Width="194"/>
+            <TextBlock
+            HorizontalAlignment="Center"
+            FontSize="20" Text="Работник"/>
+            <ComboBox Width="194" x:Name="cmbFIOWorker" />
+
+            <!--<TextBlock
+            HorizontalAlignment="Center"
+            FontSize="20"
+        
+            Text="Фамилия работника"
+            Margin="0 10 0 0 "/>
+            <TextBox
+            x:Name="TbFirstNameW"
+            HorizontalAlignment="Center"
+            FontSize="20"
+            Width="200"
+            Margin="0 10 0 0" 
+            Background="#FFF1B189"/>
+
+            <TextBlock
+            HorizontalAlignment="Center"
+            FontSize="20"
+        
+            Text="Имя работника"
+            Margin="0 10 0 0 "/>
+            <TextBox
+
+            HorizontalAlignment="Center"
+            FontSize="20"
+            Width="200"
+            x:Name="TbLastNameW"
+            Margin="0 10 0 0" 
+            Background="#FFF1B189"/>
+
+            <TextBlock
+            HorizontalAlignment="Center"
+            FontSize="20"
+                    
+            Text="Отчество  работника"
+            Margin="0 10 0 0 "/>
+            <TextBox
+
+            HorizontalAlignment="Center"
+            FontSize="20"
+            Width="200"
+            x:Name="TbPatronymicW"
+            Margin="0 10 0 0" 
+            Background="#FFF1B189"/>-->
+            <TextBlock
+            HorizontalAlignment="Center"
+            FontSize="20"
+            Text="Комментарий"
+            Margin="0 10 0 0 "/>
+            <TextBox
+            x:Name="TbComment"
+            HorizontalAlignment="Center"
+            FontSize="20"
+            Width="200"
+            Margin="0 10 0 0" 
+            Background="#FFF1B189"/>
+
+
+        </StackPanel>
         <Image x:Name="___Res_1_png" Margin="-173,-38,0,0"
         Source="/Res/1.png" 
         Stretch="Fill" 
@@ -117,12 +207,12 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="___Res_1_png_Копировать" Margin="-154,383,0,0"
+        <Image x:Name="___Res_1_png_Копировать" Margin="-127,364,0,0"
      Source="/Res/1.png" 
      Stretch="Fill" 
      RenderTransformOrigin="0.399,1.319"
      HorizontalAlignment="Left" 
-     Width="510" Height="66" VerticalAlignment="Top" Opacity="0.5">
+     Width="445" Height="66" VerticalAlignment="Top" Opacity="0.5">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

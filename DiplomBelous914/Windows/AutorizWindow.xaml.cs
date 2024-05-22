@@ -25,7 +25,6 @@ namespace DiplomBelous914.Windows
         {
             InitializeComponent();
         }
-
         private void btnMenu_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(TbLogin.Text))

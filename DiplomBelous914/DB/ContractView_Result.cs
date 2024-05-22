@@ -16,7 +16,7 @@ namespace DiplomBelous914.DB
         public string NameContract { get; set; }
         public Nullable<decimal> FullCost { get; set; }
         public string Report { get; set; }
-        public Nullable<System.DateTime> StartDate { get; set; }
+        public System.DateTime StartDate { get; set; }
         public string Client { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }

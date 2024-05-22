@@ -18,6 +18,9 @@ using static DiplomBelous914.HelpClass.EFClass;
 using DiplomBelous914.Windows;
 using System.Collections;
 using System.Data.Entity;
+using System.Diagnostics.Contracts;
+using System.Data.SqlClient;
+using System.Diagnostics.PerformanceData;
 
 namespace DiplomBelous914.Pages
 {
@@ -91,7 +94,52 @@ namespace DiplomBelous914.Pages
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            listviewContract.ItemsSource = Context.View_Contract.ToList();
+            listviewContract.ItemsSource = Context.View_Contract1.ToList();
         }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            AddContractWindow addContractWindow = new AddContractWindow();
+            addContractWindow.ShowDialog();
+        }
+
+        private void btnAddService_Click(object sender, RoutedEventArgs e)
+        {
+            AddContractServiceWindow add = new AddContractServiceWindow(listviewContract.SelectedItem as View_Contract);
+            add.ShowDialog();
+        }
+
+       
+
+        //private void btnDeleteContract_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить работника", "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question);
+        //    if (result == MessageBoxResult.Yes)
+        //    {
+
+        //        if (listviewContract.SelectedItem != null)
+        //        {
+        //            View_Contract Vcontract = listviewContract.SelectedItem as View_Contract;
+
+                   
+                      
+                    
+        //            Contractt contract = Context.Contractt.ToList().Where(i => i.IdContract == Vcontract.IdContract).FirstOrDefault();
+        //            Context.Contractt.Remove(contract);
+        //            Context.SaveChanges();
+        //            ClientContract clientContract = Context.ClientContract.ToList().Where(i => i.IdContract == Vcontract.IdContract).FirstOrDefault();
+        //            Context.ClientContract.Remove(clientContract);
+        //            Context.SaveChanges();
+        //            MessageBox.Show("Контракт удален");
+
+        //            listviewContract.ItemsSource = Context.View_Contract.ToList();
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("Выделите запись, которую хотите удалить");
+        //            return;
+        //        }
+        //    }
+        //}
     }
 }

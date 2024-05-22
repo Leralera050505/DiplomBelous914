@@ -50,6 +50,7 @@ namespace DiplomBelous914.Windows
                     Context.Client.Add(client);
                     Context.SaveChanges();
                     MessageBox.Show("Добавление прошло успешно");
+                    this.Close();
                 }
             }
             catch (Exception ex)

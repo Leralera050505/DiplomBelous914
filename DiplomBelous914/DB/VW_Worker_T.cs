@@ -22,12 +22,12 @@ namespace DiplomBelous914.DB
         public string Login { get; set; }
         public string Password { get; set; }
         public string NameEducation { get; set; }
-        public System.DateTime StartStudy { get; set; }
-        public System.DateTime EndStudy { get; set; }
+        public Nullable<System.DateTime> StartStudy { get; set; }
+        public Nullable<System.DateTime> EndStudy { get; set; }
         public string Diploma { get; set; }
         public int IdWorker { get; set; }
-        public Nullable<int> IdGender { get; set; }
-        public Nullable<int> IdPassword { get; set; }
-        public Nullable<int> IdPost { get; set; }
+        public int IdGender { get; set; }
+        public int IdPassword { get; set; }
+        public int IdPost { get; set; }
     }
 }

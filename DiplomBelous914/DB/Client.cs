@@ -17,7 +17,7 @@ namespace DiplomBelous914.DB
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Client()
         {
-            this.Contract = new HashSet<Contract>();
+            this.Contractt = new HashSet<Contractt>();
         }
     
         public int IdClient { get; set; }
@@ -30,6 +30,6 @@ namespace DiplomBelous914.DB
     
         public virtual Gender Gender { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Contract> Contract { get; set; }
+        public virtual ICollection<Contractt> Contractt { get; set; }
     }
 }

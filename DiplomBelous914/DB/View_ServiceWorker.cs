@@ -14,17 +14,17 @@ namespace DiplomBelous914.DB
     
     public partial class View_ServiceWorker
     {
+        public int IdService { get; set; }
         public string NameService { get; set; }
+        public int IdActivityService { get; set; }
         public string FullName { get; set; }
+        public int IdPost { get; set; }
         public decimal Cost { get; set; }
         public System.DateTime StartDateService { get; set; }
         public string NameActivity { get; set; }
         public string NameContract { get; set; }
         public Nullable<System.DateTime> EndDateService { get; set; }
         public int IdWorker { get; set; }
-        public int IdService { get; set; }
-        public int IdActivityService { get; set; }
         public int IdClientContract { get; set; }
-        public int IdPost { get; set; }
     }
 }

@@ -5,11 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DiplomBelous914.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="850"
+      d:DesignHeight="450" d:DesignWidth="860"
       Title="ContractPage">
 
     <Grid>
-        <WrapPanel>
+        <WrapPanel Margin="0,0,-34,0">
             <TextBlock Text="Поиск"
                     Margin="10"
                     FontSize="15"/>
@@ -32,11 +32,11 @@
                  
                   />
             <Button 
-             Content=" Добавить "
+             Content=" Добавить контракт"
              x:Name="btnAdd"
              Margin="8 0"
               Background="#FF9E73"
-             Style="{StaticResource ButtonStileBa}"
+             Style="{StaticResource ButtonStileBa}" Click="btnAdd_Click"
             >
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -45,10 +45,12 @@
                 </Button.Resources>
             </Button>
             <Button 
-             Content=" Изменить "
+             Content="Добавить услугу "
              Margin="8 0"
+             x:Name="btnAddService"
              Background="#FF9E73"
-             Style="{StaticResource ButtonStileBa}"
+             Style="{StaticResource ButtonStileBa}" Click="btnAddService_Click"
+                
             >
                 <Button.Resources>
                     <Style TargetType="Border">
@@ -56,18 +58,19 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button 
+            <!--<Button 
              Content=" Удалить "
              Margin="8 0"
+             x:Name="btnDeleteContract"
              Background="#FF9E73"
-             Style="{StaticResource ButtonStileBa}"
+             Style="{StaticResource ButtonStileBa}" Click="btnDeleteContract_Click"
             >
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"></Setter>
                     </Style>
                 </Button.Resources>
-            </Button>
+            </Button>-->
             <Button 
        x:Name="btnUpdate"
        Margin="8 0"
@@ -85,7 +88,7 @@
         </WrapPanel>
         <ListView x:Name="listviewContract"  
               
-               Margin="0 50 0 0" >
+               Margin="0,40,0,10" >
             <ListView.View >
                 <GridView >
                     <GridViewColumn DisplayMemberBinding="{Binding Path=NameContract}" 

@@ -35,7 +35,7 @@
           <Property Name="IdWorker" Type="int" Nullable="false" />
           <Property Name="StartDateService" Type="datetime" Nullable="false" />
           <Property Name="EndDateService" Type="datetime" />
-          <Property Name="IDActivityService" Type="int" Nullable="false" />
+          <Property Name="IDActivityService" Type="int" />
           <Property Name="Comment" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Competence">
@@ -61,17 +61,18 @@
           <Property Name="IdWorker" Type="int" Nullable="false" />
           <Property Name="IdCompetence" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Contract">
+        <EntityType Name="Contractt">
           <Key>
             <PropertyRef Name="IdContract" />
           </Key>
           <Property Name="IdContract" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameContract" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="StartDate" Type="datetime" Nullable="false" />
-          <Property Name="Activity" Type="bit" Nullable="false" />
+          <Property Name="Activity" Type="bit" />
           <Property Name="IdClient" Type="int" Nullable="false" />
           <Property Name="Report" Type="nvarchar" MaxLength="1000" />
-          <Property Name="FullCost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="FullCost" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="IsDeleted" Type="bit" />
         </EntityType>
         <EntityType Name="Document">
           <Key>
@@ -87,10 +88,10 @@
           </Key>
           <Property Name="IdEducation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdWorker" Type="int" Nullable="false" />
-          <Property Name="NameEducation" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="StartStudy" Type="date" Nullable="false" />
-          <Property Name="EndStudy" Type="date" Nullable="false" />
-          <Property Name="Diploma" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="NameEducation" Type="nvarchar" MaxLength="200" />
+          <Property Name="StartStudy" Type="date" />
+          <Property Name="EndStudy" Type="date" />
+          <Property Name="Diploma" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -162,11 +163,12 @@
             <PropertyRef Name="Client" />
             <PropertyRef Name="Email" />
             <PropertyRef Name="Phone" />
+            <PropertyRef Name="NameContract" />
           </Key>
           <Property Name="Client" Type="nvarchar" MaxLength="152" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Phone" Type="char" MaxLength="11" Nullable="false" />
-          <Property Name="NameContract" Type="nvarchar" MaxLength="50" />
+          <Property Name="NameContract" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FullCost" Type="decimal" Precision="10" Scale="2" />
           <Property Name="NameService" Type="nvarchar" MaxLength="4000" />
         </EntityType>
@@ -176,16 +178,34 @@
           <Key>
             <PropertyRef Name="NameContract" />
             <PropertyRef Name="Activity" />
-            <PropertyRef Name="FullCost" />
             <PropertyRef Name="StartDate" />
             <PropertyRef Name="Client" />
+            <PropertyRef Name="IdContract" />
           </Key>
           <Property Name="NameContract" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Activity" Type="bit" Nullable="false" />
           <Property Name="NameService" Type="nvarchar" MaxLength="4000" />
-          <Property Name="FullCost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="FullCost" Type="decimal" Precision="10" Scale="2" />
           <Property Name="StartDate" Type="datetime" Nullable="false" />
           <Property Name="Client" Type="nvarchar" MaxLength="56" Nullable="false" />
+          <Property Name="IdContract" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Belous914_Kyrs1.dbo.View_Contract1" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="View_Contract1">
+          <Key>
+            <PropertyRef Name="NameContract" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="Client" />
+            <PropertyRef Name="IdContract" />
+          </Key>
+          <Property Name="NameContract" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Activity" Type="bit" />
+          <Property Name="NameService" Type="nvarchar" MaxLength="4000" />
+          <Property Name="FullCost" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="Client" Type="nvarchar" MaxLength="56" Nullable="false" />
+          <Property Name="IdContract" Type="int" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Belous914_Kyrs1.dbo.View_Service" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -228,19 +248,66 @@
           <Property Name="IdClientContract" Type="int" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Belous914_Kyrs1.dbo.View_ServiceWorker2" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="View_ServiceWorker2">
+          <Key>
+            <PropertyRef Name="IdService" />
+            <PropertyRef Name="NameService" />
+            <PropertyRef Name="IdActivityService" />
+            <PropertyRef Name="FullName" />
+            <PropertyRef Name="IdPost" />
+            <PropertyRef Name="Cost" />
+            <PropertyRef Name="StartDateService" />
+            <PropertyRef Name="NameActivity" />
+            <PropertyRef Name="NameContract" />
+            <PropertyRef Name="IdWorker" />
+            <PropertyRef Name="IdClientContract" />
+          </Key>
+          <Property Name="IdService" Type="int" Nullable="false" />
+          <Property Name="NameService" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdActivityService" Type="int" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="56" Nullable="false" />
+          <Property Name="IdPost" Type="int" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="StartDateService" Type="datetime" Nullable="false" />
+          <Property Name="NameActivity" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameContract" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EndDateService" Type="datetime" />
+          <Property Name="IdWorker" Type="int" Nullable="false" />
+          <Property Name="IdClientContract" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Belous914_Kyrs1.dbo.View_Worker" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="View_Worker">
           <Key>
             <PropertyRef Name="Worker" />
             <PropertyRef Name="NamePost" />
-            <PropertyRef Name="NameEducation" />
-            <PropertyRef Name="Diploma" />
           </Key>
           <Property Name="Worker" Type="nvarchar" MaxLength="56" Nullable="false" />
           <Property Name="Competence" Type="nvarchar" MaxLength="4000" />
           <Property Name="NamePost" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="NameEducation" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="Diploma" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="NameEducation" Type="nvarchar" MaxLength="200" />
+          <Property Name="Diploma" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Belous914_Kyrs1.dbo.VW_FIO_Client" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="VW_FIO_Client">
+          <Key>
+            <PropertyRef Name="FullName" />
+            <PropertyRef Name="IdClient" />
+          </Key>
+          <Property Name="FullName" Type="nvarchar" MaxLength="56" Nullable="false" />
+          <Property Name="IdClient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Belous914_Kyrs1.dbo.VW_FIO_Worker" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="VW_FIO_Worker">
+          <Key>
+            <PropertyRef Name="FullName" />
+            <PropertyRef Name="IdWorker" />
+          </Key>
+          <Property Name="FullName" Type="nvarchar" MaxLength="56" Nullable="false" />
+          <Property Name="IdWorker" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "Belous914_Kyrs1.dbo.VW_Worker_T" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -248,11 +315,10 @@
           <Key>
             <PropertyRef Name="NameGender" />
             <PropertyRef Name="NamePost" />
-            <PropertyRef Name="NameEducation" />
-            <PropertyRef Name="StartStudy" />
-            <PropertyRef Name="EndStudy" />
-            <PropertyRef Name="Diploma" />
             <PropertyRef Name="IdWorker" />
+            <PropertyRef Name="IdGender" />
+            <PropertyRef Name="IdPassword" />
+            <PropertyRef Name="IdPost" />
           </Key>
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" />
@@ -261,14 +327,41 @@
           <Property Name="NamePost" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Login" Type="nvarchar" MaxLength="50" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
-          <Property Name="NameEducation" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="StartStudy" Type="date" Nullable="false" />
-          <Property Name="EndStudy" Type="date" Nullable="false" />
-          <Property Name="Diploma" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="NameEducation" Type="nvarchar" MaxLength="200" />
+          <Property Name="StartStudy" Type="date" />
+          <Property Name="EndStudy" Type="date" />
+          <Property Name="Diploma" Type="nvarchar" MaxLength="1000" />
           <Property Name="IdWorker" Type="int" Nullable="false" />
-          <Property Name="IdGender" Type="int" />
-          <Property Name="IdPassword" Type="int" />
-          <Property Name="IdPost" Type="int" />
+          <Property Name="IdGender" Type="int" Nullable="false" />
+          <Property Name="IdPassword" Type="int" Nullable="false" />
+          <Property Name="IdPost" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Belous914_Kyrs1.dbo.WorkerW" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="WorkerW">
+          <Key>
+            <PropertyRef Name="NameGender" />
+            <PropertyRef Name="NamePost" />
+            <PropertyRef Name="IdWorker" />
+            <PropertyRef Name="IdGender" />
+            <PropertyRef Name="IdPassword" />
+            <PropertyRef Name="IdPost" />
+          </Key>
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="NameGender" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="NamePost" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="NameEducation" Type="nvarchar" MaxLength="200" />
+          <Property Name="StartStudy" Type="date" />
+          <Property Name="EndStudy" Type="date" />
+          <Property Name="Diploma" Type="nvarchar" MaxLength="1000" />
+          <Property Name="IdWorker" Type="int" Nullable="false" />
+          <Property Name="IdGender" Type="int" Nullable="false" />
+          <Property Name="IdPassword" Type="int" Nullable="false" />
+          <Property Name="IdPost" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Client_Gender">
           <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
@@ -283,7 +376,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ClientContract_ActivityService">
-          <End Role="ActivityService" Type="Self.ActivityService" Multiplicity="1" />
+          <End Role="ActivityService" Type="Self.ActivityService" Multiplicity="0..1" />
           <End Role="ClientContract" Type="Self.ClientContract" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ActivityService">
@@ -295,10 +388,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ClientContract_Contract">
-          <End Role="Contract" Type="Self.Contract" Multiplicity="1" />
+          <End Role="Contractt" Type="Self.Contractt" Multiplicity="1" />
           <End Role="ClientContract" Type="Self.ClientContract" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Contract">
+            <Principal Role="Contractt">
               <PropertyRef Name="IdContract" />
             </Principal>
             <Dependent Role="ClientContract">
@@ -380,12 +473,12 @@
         </Association>
         <Association Name="FK_Contract_Client">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <End Role="Contractt" Type="Self.Contractt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
               <PropertyRef Name="IdClient" />
             </Principal>
-            <Dependent Role="Contract">
+            <Dependent Role="Contractt">
               <PropertyRef Name="IdClient" />
             </Dependent>
           </ReferentialConstraint>
@@ -470,7 +563,7 @@
           <ReturnType>
             <CollectionType>
               <RowType>
-                <Property Name="NameContract" Type="nvarchar" MaxLength="50" />
+                <Property Name="NameContract" Type="nvarchar" MaxLength="50" Nullable="false" />
                 <Property Name="FullCost" Type="decimal" Precision="10" Scale="2" />
                 <Property Name="NameService" Type="nvarchar" MaxLength="50" Nullable="false" />
                 <Property Name="Client" Type="nvarchar" MaxLength="56" Nullable="false" />
@@ -487,10 +580,10 @@
           <ReturnType>
             <CollectionType>
               <RowType>
-                <Property Name="NameContract" Type="nvarchar" MaxLength="50" />
+                <Property Name="NameContract" Type="nvarchar" MaxLength="50" Nullable="false" />
                 <Property Name="FullCost" Type="decimal" Precision="10" Scale="2" />
                 <Property Name="Report" Type="nvarchar" MaxLength="1000" />
-                <Property Name="StartDate" Type="datetime" />
+                <Property Name="StartDate" Type="datetime" Nullable="false" />
                 <Property Name="Client" Type="nvarchar" MaxLength="56" Nullable="false" />
                 <Property Name="Phone" Type="char" MaxLength="11" Nullable="false" />
                 <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -563,7 +656,7 @@
           <EntitySet Name="Competence" EntityType="Self.Competence" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompetenceCheck" EntityType="Self.CompetenceCheck" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompetenceWorker" EntityType="Self.CompetenceWorker" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Contract" EntityType="Self.Contract" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contractt" EntityType="Self.Contractt" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Education" EntityType="Self.Education" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
@@ -590,8 +683,20 @@
     [View_Contract].[NameService] AS [NameService], 
     [View_Contract].[FullCost] AS [FullCost], 
     [View_Contract].[StartDate] AS [StartDate], 
-    [View_Contract].[Client] AS [Client]
+    [View_Contract].[Client] AS [Client], 
+    [View_Contract].[IdContract] AS [IdContract]
     FROM [dbo].[View_Contract] AS [View_Contract]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="View_Contract1" EntityType="Self.View_Contract1" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_Contract1].[NameContract] AS [NameContract], 
+    [View_Contract1].[Activity] AS [Activity], 
+    [View_Contract1].[NameService] AS [NameService], 
+    [View_Contract1].[FullCost] AS [FullCost], 
+    [View_Contract1].[StartDate] AS [StartDate], 
+    [View_Contract1].[Client] AS [Client], 
+    [View_Contract1].[IdContract] AS [IdContract]
+    FROM [dbo].[View_Contract1] AS [View_Contract1]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="View_Service" EntityType="Self.View_Service" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -616,6 +721,22 @@
     [View_ServiceWorker].[IdClientContract] AS [IdClientContract]
     FROM [dbo].[View_ServiceWorker] AS [View_ServiceWorker]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="View_ServiceWorker2" EntityType="Self.View_ServiceWorker2" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_ServiceWorker2].[IdService] AS [IdService], 
+    [View_ServiceWorker2].[NameService] AS [NameService], 
+    [View_ServiceWorker2].[IdActivityService] AS [IdActivityService], 
+    [View_ServiceWorker2].[FullName] AS [FullName], 
+    [View_ServiceWorker2].[IdPost] AS [IdPost], 
+    [View_ServiceWorker2].[Cost] AS [Cost], 
+    [View_ServiceWorker2].[StartDateService] AS [StartDateService], 
+    [View_ServiceWorker2].[NameActivity] AS [NameActivity], 
+    [View_ServiceWorker2].[NameContract] AS [NameContract], 
+    [View_ServiceWorker2].[EndDateService] AS [EndDateService], 
+    [View_ServiceWorker2].[IdWorker] AS [IdWorker], 
+    [View_ServiceWorker2].[IdClientContract] AS [IdClientContract]
+    FROM [dbo].[View_ServiceWorker2] AS [View_ServiceWorker2]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="View_Worker" EntityType="Self.View_Worker" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [View_Worker].[Worker] AS [Worker], 
@@ -624,6 +745,18 @@
     [View_Worker].[NameEducation] AS [NameEducation], 
     [View_Worker].[Diploma] AS [Diploma]
     FROM [dbo].[View_Worker] AS [View_Worker]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_FIO_Client" EntityType="Self.VW_FIO_Client" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_FIO_Client].[FullName] AS [FullName], 
+    [VW_FIO_Client].[IdClient] AS [IdClient]
+    FROM [dbo].[VW_FIO_Client] AS [VW_FIO_Client]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_FIO_Worker" EntityType="Self.VW_FIO_Worker" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_FIO_Worker].[FullName] AS [FullName], 
+    [VW_FIO_Worker].[IdWorker] AS [IdWorker]
+    FROM [dbo].[VW_FIO_Worker] AS [VW_FIO_Worker]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="VW_Worker_T" EntityType="Self.VW_Worker_T" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -644,6 +777,25 @@
     [VW_Worker_T].[IdPost] AS [IdPost]
     FROM [dbo].[VW_Worker_T] AS [VW_Worker_T]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="WorkerW" EntityType="Self.WorkerW" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [WorkerW].[FirstName] AS [FirstName], 
+    [WorkerW].[LastName] AS [LastName], 
+    [WorkerW].[Patronymic] AS [Patronymic], 
+    [WorkerW].[NameGender] AS [NameGender], 
+    [WorkerW].[NamePost] AS [NamePost], 
+    [WorkerW].[Login] AS [Login], 
+    [WorkerW].[Password] AS [Password], 
+    [WorkerW].[NameEducation] AS [NameEducation], 
+    [WorkerW].[StartStudy] AS [StartStudy], 
+    [WorkerW].[EndStudy] AS [EndStudy], 
+    [WorkerW].[Diploma] AS [Diploma], 
+    [WorkerW].[IdWorker] AS [IdWorker], 
+    [WorkerW].[IdGender] AS [IdGender], 
+    [WorkerW].[IdPassword] AS [IdPassword], 
+    [WorkerW].[IdPost] AS [IdPost]
+    FROM [dbo].[WorkerW] AS [WorkerW]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Client_Gender" Association="Self.FK_Client_Gender">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="Client" EntitySet="Client" />
@@ -653,7 +805,7 @@
             <End Role="ClientContract" EntitySet="ClientContract" />
           </AssociationSet>
           <AssociationSet Name="FK_ClientContract_Contract" Association="Self.FK_ClientContract_Contract">
-            <End Role="Contract" EntitySet="Contract" />
+            <End Role="Contractt" EntitySet="Contractt" />
             <End Role="ClientContract" EntitySet="ClientContract" />
           </AssociationSet>
           <AssociationSet Name="FK_ClientContract_Service" Association="Self.FK_ClientContract_Service">
@@ -682,7 +834,7 @@
           </AssociationSet>
           <AssociationSet Name="FK_Contract_Client" Association="Self.FK_Contract_Client">
             <End Role="Client" EntitySet="Client" />
-            <End Role="Contract" EntitySet="Contract" />
+            <End Role="Contractt" EntitySet="Contractt" />
           </AssociationSet>
           <AssociationSet Name="FK_Document_Service" Association="Self.FK_Document_Service">
             <End Role="Service" EntitySet="Service" />
@@ -714,7 +866,7 @@
     <edmx:ConceptualModels>
       <Schema Namespace="Belous914_Kyrs1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <ComplexType Name="ContractService_Result">
-          <Property Name="NameContract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameContract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FullCost" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="NameService" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Client" Type="String" MaxLength="56" FixedLength="false" Unicode="true" Nullable="false" />
@@ -724,10 +876,10 @@
           <Property Name="NameActivityService" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </ComplexType>
         <ComplexType Name="ContractView_Result">
-          <Property Name="NameContract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameContract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FullCost" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="Report" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="StartDate" Type="DateTime" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" />
           <Property Name="Client" Type="String" MaxLength="56" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -762,7 +914,7 @@
           <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Gender" Relationship="Self.FK_Client_Gender" FromRole="Client" ToRole="Gender" />
-          <NavigationProperty Name="Contract" Relationship="Self.FK_Contract_Client" FromRole="Client" ToRole="Contract" />
+          <NavigationProperty Name="Contractt" Relationship="Self.FK_Contract_Client" FromRole="Client" ToRole="Contractt" />
         </EntityType>
         <EntityType Name="ClientContract">
           <Key>
@@ -774,10 +926,10 @@
           <Property Name="IdWorker" Type="Int32" Nullable="false" />
           <Property Name="StartDateService" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndDateService" Type="DateTime" Precision="3" />
-          <Property Name="IDActivityService" Type="Int32" Nullable="false" />
+          <Property Name="IDActivityService" Type="Int32" />
           <Property Name="Comment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ActivityService" Relationship="Self.FK_ClientContract_ActivityService" FromRole="ClientContract" ToRole="ActivityService" />
-          <NavigationProperty Name="Contract" Relationship="Self.FK_ClientContract_Contract" FromRole="ClientContract" ToRole="Contract" />
+          <NavigationProperty Name="Contractt" Relationship="Self.FK_ClientContract_Contract" FromRole="ClientContract" ToRole="Contractt" />
           <NavigationProperty Name="Service" Relationship="Self.FK_ClientContract_Service" FromRole="ClientContract" ToRole="Service" />
           <NavigationProperty Name="Worker" Relationship="Self.FK_ClientContract_Worker" FromRole="ClientContract" ToRole="Worker" />
           <NavigationProperty Name="CompetenceCheck" Relationship="Self.FK_CompetenceCheck_ClientContract" FromRole="ClientContract" ToRole="CompetenceCheck" />
@@ -811,19 +963,20 @@
           <NavigationProperty Name="Competence" Relationship="Self.FK_CompetenceWorker_Competence" FromRole="CompetenceWorker" ToRole="Competence" />
           <NavigationProperty Name="Worker" Relationship="Self.FK_CompetenceWorker_Worker" FromRole="CompetenceWorker" ToRole="Worker" />
         </EntityType>
-        <EntityType Name="Contract">
+        <EntityType Name="Contractt">
           <Key>
             <PropertyRef Name="IdContract" />
           </Key>
           <Property Name="IdContract" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameContract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Activity" Type="Boolean" Nullable="false" />
+          <Property Name="Activity" Type="Boolean" />
           <Property Name="IdClient" Type="Int32" Nullable="false" />
           <Property Name="Report" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="FullCost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Client" Relationship="Self.FK_Contract_Client" FromRole="Contract" ToRole="Client" />
-          <NavigationProperty Name="ClientContract" Relationship="Self.FK_ClientContract_Contract" FromRole="Contract" ToRole="ClientContract" />
+          <Property Name="FullCost" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Contract_Client" FromRole="Contractt" ToRole="Client" />
+          <NavigationProperty Name="ClientContract" Relationship="Self.FK_ClientContract_Contract" FromRole="Contractt" ToRole="ClientContract" />
+          <Property Name="IsDeleted" Type="Boolean" />
         </EntityType>
         <EntityType Name="Document">
           <Key>
@@ -840,10 +993,10 @@
           </Key>
           <Property Name="IdEducation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdWorker" Type="Int32" Nullable="false" />
-          <Property Name="NameEducation" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="StartStudy" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="EndStudy" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Diploma" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameEducation" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="StartStudy" Type="DateTime" Precision="0" />
+          <Property Name="EndStudy" Type="DateTime" Precision="0" />
+          <Property Name="Diploma" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Worker" Relationship="Self.FK_Education_Worker" FromRole="Education" ToRole="Worker" />
         </EntityType>
         <EntityType Name="Gender">
@@ -914,6 +1067,7 @@
           <Property Name="IdGender" Type="Int32" />
           <Property Name="IdPost" Type="Int32" />
           <Property Name="IdPassword" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="ClientContract" Relationship="Self.FK_ClientContract_Worker" FromRole="Worker" ToRole="ClientContract" />
           <NavigationProperty Name="CompetenceWorker" Relationship="Self.FK_CompetenceWorker_Worker" FromRole="Worker" ToRole="CompetenceWorker" />
           <NavigationProperty Name="Education" Relationship="Self.FK_Education_Worker" FromRole="Worker" ToRole="Education" />
@@ -921,18 +1075,18 @@
           <NavigationProperty Name="Password" Relationship="Self.FK_Worker_Password" FromRole="Worker" ToRole="Password" />
           <NavigationProperty Name="Post" Relationship="Self.FK_Worker_Post" FromRole="Worker" ToRole="Post" />
           <NavigationProperty Name="Salary" Relationship="Self.FK_Salary_Worker" FromRole="Worker" ToRole="Salary" />
-          <Property Name="IsDeleted" Type="Boolean" />
         </EntityType>
         <EntityType Name="View_Client">
           <Key>
             <PropertyRef Name="Client" />
             <PropertyRef Name="Email" />
             <PropertyRef Name="Phone" />
+            <PropertyRef Name="NameContract" />
           </Key>
           <Property Name="Client" Type="String" MaxLength="152" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="NameContract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameContract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FullCost" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="NameService" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -940,16 +1094,17 @@
           <Key>
             <PropertyRef Name="NameContract" />
             <PropertyRef Name="Activity" />
-            <PropertyRef Name="FullCost" />
             <PropertyRef Name="StartDate" />
             <PropertyRef Name="Client" />
+            <PropertyRef Name="IdContract" />
           </Key>
           <Property Name="NameContract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Activity" Type="Boolean" Nullable="false" />
           <Property Name="NameService" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="FullCost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="FullCost" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Client" Type="String" MaxLength="56" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdContract" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="View_Service">
           <Key>
@@ -962,53 +1117,77 @@
         </EntityType>
         <EntityType Name="View_ServiceWorker">
           <Key>
+            <PropertyRef Name="IdService" />
             <PropertyRef Name="NameService" />
+            <PropertyRef Name="IdActivityService" />
             <PropertyRef Name="FullName" />
+            <PropertyRef Name="IdPost" />
             <PropertyRef Name="Cost" />
             <PropertyRef Name="StartDateService" />
             <PropertyRef Name="NameActivity" />
             <PropertyRef Name="NameContract" />
             <PropertyRef Name="IdWorker" />
-            <PropertyRef Name="IdService" />
-            <PropertyRef Name="IdActivityService" />
             <PropertyRef Name="IdClientContract" />
-            <PropertyRef Name="IdPost" />
           </Key>
+          <Property Name="IdService" Type="Int32" Nullable="false" />
           <Property Name="NameService" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdActivityService" Type="Int32" Nullable="false" />
           <Property Name="FullName" Type="String" MaxLength="56" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdPost" Type="Int32" Nullable="false" />
           <Property Name="Cost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="StartDateService" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="NameActivity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NameContract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EndDateService" Type="DateTime" Precision="3" />
           <Property Name="IdWorker" Type="Int32" Nullable="false" />
-          <Property Name="IdService" Type="Int32" Nullable="false" />
-          <Property Name="IdActivityService" Type="Int32" Nullable="false" />
           <Property Name="IdClientContract" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="View_ServiceWorker2">
+          <Key>
+            <PropertyRef Name="IdService" />
+            <PropertyRef Name="NameService" />
+            <PropertyRef Name="IdActivityService" />
+            <PropertyRef Name="FullName" />
+            <PropertyRef Name="IdPost" />
+            <PropertyRef Name="Cost" />
+            <PropertyRef Name="StartDateService" />
+            <PropertyRef Name="NameActivity" />
+            <PropertyRef Name="NameContract" />
+            <PropertyRef Name="IdWorker" />
+            <PropertyRef Name="IdClientContract" />
+          </Key>
+          <Property Name="IdService" Type="Int32" Nullable="false" />
+          <Property Name="NameService" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdActivityService" Type="Int32" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="56" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdPost" Type="Int32" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="StartDateService" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NameActivity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameContract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EndDateService" Type="DateTime" Precision="3" />
+          <Property Name="IdWorker" Type="Int32" Nullable="false" />
+          <Property Name="IdClientContract" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="View_Worker">
           <Key>
             <PropertyRef Name="Worker" />
             <PropertyRef Name="NamePost" />
-            <PropertyRef Name="NameEducation" />
-            <PropertyRef Name="Diploma" />
           </Key>
           <Property Name="Worker" Type="String" MaxLength="56" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Competence" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="NamePost" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NameEducation" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Diploma" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameEducation" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Diploma" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="VW_Worker_T">
           <Key>
             <PropertyRef Name="NameGender" />
             <PropertyRef Name="NamePost" />
-            <PropertyRef Name="NameEducation" />
-            <PropertyRef Name="StartStudy" />
-            <PropertyRef Name="EndStudy" />
-            <PropertyRef Name="Diploma" />
             <PropertyRef Name="IdWorker" />
+            <PropertyRef Name="IdGender" />
+            <PropertyRef Name="IdPassword" />
+            <PropertyRef Name="IdPost" />
           </Key>
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1017,17 +1196,42 @@
           <Property Name="NamePost" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="NameEducation" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="StartStudy" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="EndStudy" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Diploma" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameEducation" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="StartStudy" Type="DateTime" Precision="0" />
+          <Property Name="EndStudy" Type="DateTime" Precision="0" />
+          <Property Name="Diploma" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="IdWorker" Type="Int32" Nullable="false" />
-          <Property Name="IdGender" Type="Int32" />
-          <Property Name="IdPassword" Type="Int32" />
-          <Property Name="IdPost" Type="Int32" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="IdPassword" Type="Int32" Nullable="false" />
+          <Property Name="IdPost" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkerW">
+          <Key>
+            <PropertyRef Name="NameGender" />
+            <PropertyRef Name="NamePost" />
+            <PropertyRef Name="IdWorker" />
+            <PropertyRef Name="IdGender" />
+            <PropertyRef Name="IdPassword" />
+            <PropertyRef Name="IdPost" />
+          </Key>
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameGender" Type="String" MaxLength="1" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NamePost" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NameEducation" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="StartStudy" Type="DateTime" Precision="0" />
+          <Property Name="EndStudy" Type="DateTime" Precision="0" />
+          <Property Name="Diploma" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="IdWorker" Type="Int32" Nullable="false" />
+          <Property Name="IdGender" Type="Int32" Nullable="false" />
+          <Property Name="IdPassword" Type="Int32" Nullable="false" />
+          <Property Name="IdPost" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_ClientContract_ActivityService">
-          <End Role="ActivityService" Type="Self.ActivityService" Multiplicity="1" />
+          <End Role="ActivityService" Type="Self.ActivityService" Multiplicity="0..1" />
           <End Role="ClientContract" Type="Self.ClientContract" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ActivityService">
@@ -1052,21 +1256,21 @@
         </Association>
         <Association Name="FK_Contract_Client">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="Contract" Type="Self.Contract" Multiplicity="*" />
+          <End Role="Contractt" Type="Self.Contractt" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
               <PropertyRef Name="IdClient" />
             </Principal>
-            <Dependent Role="Contract">
+            <Dependent Role="Contractt">
               <PropertyRef Name="IdClient" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ClientContract_Contract">
-          <End Role="Contract" Type="Self.Contract" Multiplicity="1" />
+          <End Role="Contractt" Type="Self.Contractt" Multiplicity="1" />
           <End Role="ClientContract" Type="Self.ClientContract" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Contract">
+            <Principal Role="Contractt">
               <PropertyRef Name="IdContract" />
             </Principal>
             <Dependent Role="ClientContract">
@@ -1225,7 +1429,7 @@
           <EntitySet Name="Competence" EntityType="Self.Competence" />
           <EntitySet Name="CompetenceCheck" EntityType="Self.CompetenceCheck" />
           <EntitySet Name="CompetenceWorker" EntityType="Self.CompetenceWorker" />
-          <EntitySet Name="Contract" EntityType="Self.Contract" />
+          <EntitySet Name="Contractt" EntityType="Self.Contractt" />
           <EntitySet Name="Document" EntityType="Self.Document" />
           <EntitySet Name="Education" EntityType="Self.Education" />
           <EntitySet Name="Gender" EntityType="Self.Gender" />
@@ -1239,8 +1443,10 @@
           <EntitySet Name="View_Contract" EntityType="Self.View_Contract" />
           <EntitySet Name="View_Service" EntityType="Self.View_Service" />
           <EntitySet Name="View_ServiceWorker" EntityType="Self.View_ServiceWorker" />
+          <EntitySet Name="View_ServiceWorker2" EntityType="Self.View_ServiceWorker2" />
           <EntitySet Name="View_Worker" EntityType="Self.View_Worker" />
           <EntitySet Name="VW_Worker_T" EntityType="Self.VW_Worker_T" />
+          <EntitySet Name="WorkerW" EntityType="Self.WorkerW" />
           <AssociationSet Name="FK_ClientContract_ActivityService" Association="Self.FK_ClientContract_ActivityService">
             <End Role="ActivityService" EntitySet="ActivityService" />
             <End Role="ClientContract" EntitySet="ClientContract" />
@@ -1251,10 +1457,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Contract_Client" Association="Self.FK_Contract_Client">
             <End Role="Client" EntitySet="Client" />
-            <End Role="Contract" EntitySet="Contract" />
+            <End Role="Contractt" EntitySet="Contractt" />
           </AssociationSet>
           <AssociationSet Name="FK_ClientContract_Contract" Association="Self.FK_ClientContract_Contract">
-            <End Role="Contract" EntitySet="Contract" />
+            <End Role="Contractt" EntitySet="Contractt" />
             <End Role="ClientContract" EntitySet="ClientContract" />
           </AssociationSet>
           <AssociationSet Name="FK_ClientContract_Service" Association="Self.FK_ClientContract_Service">
@@ -1355,12 +1561,15 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="VW_FIO_Worker" EntityType="Belous914_Kyrs1Model.VW_FIO_Worker" />
+          <EntitySet Name="VW_FIO_Client" EntityType="Belous914_Kyrs1Model.VW_FIO_Client" />
+          <EntitySet Name="View_Contract1" EntityType="Belous914_Kyrs1Model.View_Contract1" />
         </EntityContainer>
         <ComplexType Name="PR_Contract_Result">
           <Property Type="String" Name="NameContract" Nullable="false" MaxLength="50" />
           <Property Type="Boolean" Name="Activity" Nullable="false" />
           <Property Type="String" Name="NameService" Nullable="true" MaxLength="4000" />
-          <Property Type="Decimal" Name="FullCost" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="FullCost" Nullable="true" Precision="10" Scale="2" />
           <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
           <Property Type="String" Name="Client" Nullable="false" MaxLength="56" />
         </ComplexType>
@@ -1384,6 +1593,37 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="VW_FIO_Worker">
+          <Key>
+            <PropertyRef Name="FullName" />
+            <PropertyRef Name="IdWorker" />
+          </Key>
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="56" FixedLength="false" Unicode="true" />
+          <Property Name="IdWorker" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="VW_FIO_Client">
+          <Key>
+            <PropertyRef Name="FullName" />
+            <PropertyRef Name="IdClient" />
+          </Key>
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="56" FixedLength="false" Unicode="true" />
+          <Property Name="IdClient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="View_Contract1">
+          <Key>
+            <PropertyRef Name="NameContract" />
+            <PropertyRef Name="StartDate" />
+            <PropertyRef Name="Client" />
+            <PropertyRef Name="IdContract" />
+          </Key>
+          <Property Name="NameContract" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Activity" Type="Boolean" />
+          <Property Name="NameService" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="FullCost" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Client" Type="String" Nullable="false" MaxLength="56" FixedLength="false" Unicode="true" />
+          <Property Name="IdContract" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1452,9 +1692,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Contract">
-            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.Contract">
-              <MappingFragment StoreEntitySet="Contract">
+          <EntitySetMapping Name="Contractt">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.Contractt">
+              <MappingFragment StoreEntitySet="Contractt">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IdContract" ColumnName="IdContract" />
                 <ScalarProperty Name="NameContract" ColumnName="NameContract" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
@@ -1545,7 +1786,6 @@
           <EntitySetMapping Name="Worker">
             <EntityTypeMapping TypeName="Belous914_Kyrs1Model.Worker">
               <MappingFragment StoreEntitySet="Worker">
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="IdWorker" ColumnName="IdWorker" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -1553,6 +1793,7 @@
                 <ScalarProperty Name="IdGender" ColumnName="IdGender" />
                 <ScalarProperty Name="IdPost" ColumnName="IdPost" />
                 <ScalarProperty Name="IdPassword" ColumnName="IdPassword" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1577,6 +1818,7 @@
                 <ScalarProperty Name="FullCost" ColumnName="FullCost" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="Client" ColumnName="Client" />
+                <ScalarProperty Name="IdContract" ColumnName="IdContract" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1592,18 +1834,36 @@
           <EntitySetMapping Name="View_ServiceWorker">
             <EntityTypeMapping TypeName="Belous914_Kyrs1Model.View_ServiceWorker">
               <MappingFragment StoreEntitySet="View_ServiceWorker">
-                <ScalarProperty Name="IdPost" ColumnName="IdPost" />
-                <ScalarProperty Name="IdClientContract" ColumnName="IdClientContract" />
-                <ScalarProperty Name="IdActivityService" ColumnName="IdActivityService" />
                 <ScalarProperty Name="IdService" ColumnName="IdService" />
                 <ScalarProperty Name="NameService" ColumnName="NameService" />
+                <ScalarProperty Name="IdActivityService" ColumnName="IdActivityService" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IdPost" ColumnName="IdPost" />
                 <ScalarProperty Name="Cost" ColumnName="Cost" />
                 <ScalarProperty Name="StartDateService" ColumnName="StartDateService" />
                 <ScalarProperty Name="NameActivity" ColumnName="NameActivity" />
                 <ScalarProperty Name="NameContract" ColumnName="NameContract" />
                 <ScalarProperty Name="EndDateService" ColumnName="EndDateService" />
                 <ScalarProperty Name="IdWorker" ColumnName="IdWorker" />
+                <ScalarProperty Name="IdClientContract" ColumnName="IdClientContract" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_ServiceWorker2">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.View_ServiceWorker2">
+              <MappingFragment StoreEntitySet="View_ServiceWorker2">
+                <ScalarProperty Name="IdService" ColumnName="IdService" />
+                <ScalarProperty Name="NameService" ColumnName="NameService" />
+                <ScalarProperty Name="IdActivityService" ColumnName="IdActivityService" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="IdPost" ColumnName="IdPost" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="StartDateService" ColumnName="StartDateService" />
+                <ScalarProperty Name="NameActivity" ColumnName="NameActivity" />
+                <ScalarProperty Name="NameContract" ColumnName="NameContract" />
+                <ScalarProperty Name="EndDateService" ColumnName="EndDateService" />
+                <ScalarProperty Name="IdWorker" ColumnName="IdWorker" />
+                <ScalarProperty Name="IdClientContract" ColumnName="IdClientContract" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1621,10 +1881,6 @@
           <EntitySetMapping Name="VW_Worker_T">
             <EntityTypeMapping TypeName="Belous914_Kyrs1Model.VW_Worker_T">
               <MappingFragment StoreEntitySet="VW_Worker_T">
-                <ScalarProperty Name="IdPost" ColumnName="IdPost" />
-                <ScalarProperty Name="IdPassword" ColumnName="IdPassword" />
-                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
-                <ScalarProperty Name="IdWorker" ColumnName="IdWorker" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
@@ -1636,6 +1892,31 @@
                 <ScalarProperty Name="StartStudy" ColumnName="StartStudy" />
                 <ScalarProperty Name="EndStudy" ColumnName="EndStudy" />
                 <ScalarProperty Name="Diploma" ColumnName="Diploma" />
+                <ScalarProperty Name="IdWorker" ColumnName="IdWorker" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="IdPassword" ColumnName="IdPassword" />
+                <ScalarProperty Name="IdPost" ColumnName="IdPost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkerW">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.WorkerW">
+              <MappingFragment StoreEntitySet="WorkerW">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="NameGender" ColumnName="NameGender" />
+                <ScalarProperty Name="NamePost" ColumnName="NamePost" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="NameEducation" ColumnName="NameEducation" />
+                <ScalarProperty Name="StartStudy" ColumnName="StartStudy" />
+                <ScalarProperty Name="EndStudy" ColumnName="EndStudy" />
+                <ScalarProperty Name="Diploma" ColumnName="Diploma" />
+                <ScalarProperty Name="IdWorker" ColumnName="IdWorker" />
+                <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+                <ScalarProperty Name="IdPassword" ColumnName="IdPassword" />
+                <ScalarProperty Name="IdPost" ColumnName="IdPost" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1733,6 +2014,35 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище Belous914_Kyrs1Model.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище Belous914_Kyrs1Model.sp_upgraddiagrams" />
+          <EntitySetMapping Name="VW_FIO_Worker">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.VW_FIO_Worker">
+              <MappingFragment StoreEntitySet="VW_FIO_Worker">
+                <ScalarProperty Name="IdWorker" ColumnName="IdWorker" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_FIO_Client">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.VW_FIO_Client">
+              <MappingFragment StoreEntitySet="VW_FIO_Client">
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_Contract1">
+            <EntityTypeMapping TypeName="Belous914_Kyrs1Model.View_Contract1">
+              <MappingFragment StoreEntitySet="View_Contract1">
+                <ScalarProperty Name="IdContract" ColumnName="IdContract" />
+                <ScalarProperty Name="Client" ColumnName="Client" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="FullCost" ColumnName="FullCost" />
+                <ScalarProperty Name="NameService" ColumnName="NameService" />
+                <ScalarProperty Name="Activity" ColumnName="Activity" />
+                <ScalarProperty Name="NameContract" ColumnName="NameContract" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

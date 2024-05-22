@@ -16,8 +16,7 @@ using System.Windows.Shapes;
 using static DiplomBelous914.HelpClass.EFClass;
 using DiplomBelous914.Windows;
 using System.Collections;
-using System.Data.Entity;
-using System.ComponentModel;
+using DiplomBelous914.HelpClass;
 
 namespace DiplomBelous914.Pages
 {
@@ -26,6 +25,7 @@ namespace DiplomBelous914.Pages
     /// </summary>
     public partial class WorkerPage : Page
     {
+        
         List<VW_Worker_T> workers = new List<VW_Worker_T>();
         List<string> sortlist = new List<string>()
         {
@@ -34,6 +34,7 @@ namespace DiplomBelous914.Pages
             "По отчеству",
             "По должности"
         };
+        
         public WorkerPage()
         {
             InitializeComponent();
@@ -53,6 +54,11 @@ namespace DiplomBelous914.Pages
                 || i.Login.Contains(TxbSearch.Text)
                 || i.Password.Contains(TxbSearch.Text)
                 || i.NamePost.Contains(TxbSearch.Text)
+                || i.StartStudy.Equals(TxbSearch.Text)
+                || i.EndStudy.Equals(TxbSearch.Text)
+                || i.NameEducation.Contains(TxbSearch.Text)
+                || i.Diploma.Contains(TxbSearch.Text)
+                || i.NameGender.Contains(TxbSearch.Text)
                 ).ToList();
             switch (CmbSort.SelectedIndex)
             {
@@ -69,6 +75,27 @@ namespace DiplomBelous914.Pages
                     break;
                 case 3:
                     workers = workers.OrderBy(i => i.NamePost).ToList();
+                    break;
+                case 4:
+                    workers = workers.OrderBy(i => i.StartStudy).ToList();
+                    break;
+                case 5:
+                    workers = workers.OrderBy(i => i.EndStudy).ToList();
+                    break;
+                case 6:
+                    workers = workers.OrderBy(i => i.NameEducation).ToList();
+                    break;
+                case 7:
+                    workers = workers.OrderBy(i => i.Diploma).ToList();
+                    break;
+                case 8:
+                    workers = workers.OrderBy(i => i.NameGender).ToList();
+                    break;
+                case 9:
+                    workers = workers.OrderBy(i => i.Login).ToList();
+                    break;
+                case 10:
+                    workers = workers.OrderBy(i => i.Password).ToList();
                     break;
                 default:
                     break;
@@ -90,13 +117,13 @@ namespace DiplomBelous914.Pages
             AddWorkerWindow addWorkerWindow = new AddWorkerWindow();
             addWorkerWindow.ShowDialog();
         }
-
-        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        private void btnUpdate_Click_2(object sender, RoutedEventArgs e)
         {
-            listviewWorker.ItemsSource = Context.VW_Worker_T.ToList();
+            listviewWorker.ItemsSource = Context.WorkerW.ToList();
         }
 
-        
+
+
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить работника", "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question);
@@ -106,10 +133,13 @@ namespace DiplomBelous914.Pages
                 if (listviewWorker.SelectedItem != null)
                 {
                     VW_Worker_T worker = listviewWorker.SelectedItem as VW_Worker_T;
-                    Worker worker1 = Context.Worker.ToList().Where(i => i.IdWorker == worker.IdWorker).FirstOrDefault();
-                    Context.Worker.Remove(worker1);
+
                     Password password = Context.Password.ToList().Where(i => i.IdPassword == worker.IdPassword).FirstOrDefault();
                     Context.Password.Remove(password);
+                    Context.SaveChanges();
+                    Worker worker1 = Context.Worker.ToList().Where(i => i.IdWorker == worker.IdWorker).FirstOrDefault();
+                    Context.Worker.Remove(worker1);
+                    Context.SaveChanges();
                     Education education = Context.Education.ToList().Where(i => i.IdWorker == worker.IdWorker).FirstOrDefault();
                     Context.Education.Remove(education);
                     Context.SaveChanges();
@@ -124,10 +154,15 @@ namespace DiplomBelous914.Pages
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+  
+
+        private void btnEditWorker_Click(object sender, RoutedEventArgs e)
         {
             EditWorkerWindow editWorkerWindow = new EditWorkerWindow(listviewWorker.SelectedItem as VW_Worker_T);
-            editWorkerWindow.ShowDialog();
+            editWorkerWindow.Show();
+
         }
+
+      
     }
 }

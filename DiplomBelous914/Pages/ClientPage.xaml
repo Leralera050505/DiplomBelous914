@@ -75,7 +75,7 @@
                   x:Name="btnUpdate"
                   Margin="8 0"
                   Width="35" 
-                  Height="30" Click="btnUpdate_Click" >
+                  Height="30" Click="btnUpdate_Click_1" >
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="20"></Setter>
@@ -96,11 +96,11 @@
                     <GridViewColumn DisplayMemberBinding="{Binding Path=LastName}" 
                       Header="Фамилия" Width="100"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Patronymic}" 
-                      Header="Отчесвто" Width="100"/>
+                      Header="Отчесвто" Width="110"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Phone}" 
                       Header="Телефон" Width="100"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path= Email}" 
-                      Header="Email" Width="120"/>
+                      Header="Email" Width="160"/>
                 </GridView>
             </ListView.View>
         </ListView>

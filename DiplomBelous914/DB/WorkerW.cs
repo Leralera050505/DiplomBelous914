@@ -12,15 +12,22 @@ namespace DiplomBelous914.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Education
+    public partial class WorkerW
     {
-        public int IdEducation { get; set; }
-        public int IdWorker { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Patronymic { get; set; }
+        public string NameGender { get; set; }
+        public string NamePost { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
         public string NameEducation { get; set; }
         public Nullable<System.DateTime> StartStudy { get; set; }
         public Nullable<System.DateTime> EndStudy { get; set; }
         public string Diploma { get; set; }
-    
-        public virtual Worker Worker { get; set; }
+        public int IdWorker { get; set; }
+        public int IdGender { get; set; }
+        public int IdPassword { get; set; }
+        public int IdPost { get; set; }
     }
 }

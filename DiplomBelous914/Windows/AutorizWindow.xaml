@@ -57,8 +57,8 @@
                 FontSize="30"
                 Margin="0 50 0 0"
                 Width="311"
-                Background="#FF9E73" 
                 Click="btnMenu_Click"
+                Background="#FF9E73" 
                 Style="{StaticResource  ButtonStileBa}"
     >           
                 <Button.Resources>

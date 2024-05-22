@@ -12,10 +12,10 @@ namespace DiplomBelous914.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Contract
+    public partial class Contractt
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Contract()
+        public Contractt()
         {
             this.ClientContract = new HashSet<ClientContract>();
         }
@@ -23,10 +23,11 @@ namespace DiplomBelous914.DB
         public int IdContract { get; set; }
         public string NameContract { get; set; }
         public System.DateTime StartDate { get; set; }
-        public bool Activity { get; set; }
+        public Nullable<bool> Activity { get; set; }
         public int IdClient { get; set; }
         public string Report { get; set; }
-        public decimal FullCost { get; set; }
+        public Nullable<decimal> FullCost { get; set; }
+        public Nullable<bool> IsDeleted { get; set; }
     
         public virtual Client Client { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

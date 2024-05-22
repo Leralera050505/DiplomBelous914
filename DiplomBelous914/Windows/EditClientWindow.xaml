@@ -94,13 +94,31 @@
         Content="Сохранить"
        FontSize="20"
        Width="200"
-       Margin="0 10 0 0" Click="btnSave_Click" />
+       Margin="0 10 0 0" Click="btnSave_Click" 
+       Background="#FF9E73" 
+       Style="{StaticResource  ButtonStileBa}" 
+       Height="35">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
             <Button
             x:Name="btnClose"
        Content="Отмена"
        FontSize="20"
        Width="200"
-       Margin="0 10 0 0" Click="btnClose_Click" />
+       Margin="0 10 0 0" Click="btnClose_Click"  
+       Background="#FF9E73" 
+       Style="{StaticResource  ButtonStileBa}" 
+       Height="35">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="15"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </StackPanel>
 
         <Image x:Name="___Res_1_png" Margin="-173,-38,0,0"

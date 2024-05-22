@@ -1,108 +1,114 @@
-﻿<Window x:Class="DiplomBelous914.Windows.EditServiceWindow"
+﻿<Window x:Class="DiplomBelous914.Windows.AddContractServiceWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiplomBelous914.Windows"
         mc:Ignorable="d"
-        Title="EditServiceWindow" Height="670" Width="805"
-         WindowStartupLocation="CenterScreen">
+        Title="AddContractServiceWindow" Height="600" Width="800"
+          WindowStartupLocation="CenterScreen">
+
     <Grid>
 
-        <StackPanel Grid.RowSpan="2">
-            <TextBlock 
-     Text="Услуга"
-     FontSize="25"
-     HorizontalAlignment="Center"
-            />
+
+        <StackPanel Grid.Column="2" >
+
+            <TextBlock
+            HorizontalAlignment="Center"
+            FontSize="20" Text="Договор"/>
+            <TextBox
+            x:Name="TbContract"
+            IsReadOnly="True"
+            HorizontalAlignment="Center"
+            FontSize="20"
+            Width="200"
+            Margin="0 10 0 0" 
+            Background="#FFF1B189"/>
             <TextBlock
      HorizontalAlignment="Center"
+     FontSize="20" Text="Услуга"/>
+            <ComboBox Width="194" x:Name="cmbService" />
+            <TextBlock
+                       HorizontalAlignment="Center"
+                       FontSize="20"
+                       Text="Дата"
+                       Margin="0 10 0 0 "/>
+            <DatePicker x:Name="StartdatePicker" Width="194"/>
+            <TextBlock
+                HorizontalAlignment="Center"
+                FontSize="20" Text="Работник"/>
+            <ComboBox Width="194" x:Name="cmbFIOWorker" />
+            <!--<TextBlock
+                      HorizontalAlignment="Center"
+                      FontSize="20"
+                      Text="Работник"
+                      Margin="0 10 0 0 "/>
+            <ComboBox Width="194" 
+                      x:Name="cmbWorker" 
+                      ItemTemplate="{StaticResource ClientTemplate}"/>-->
+            <!--<TextBlock
+     HorizontalAlignment="Center"
      FontSize="20"
-     Text="Название"
+ 
+     Text="Фамилия работника"
      Margin="0 10 0 0 "/>
             <TextBox
-     x:Name="TbName"
+     x:Name="TbFirstNameW"
      HorizontalAlignment="Center"
      FontSize="20"
-     Width="200"
-     IsReadOnly="True"
-     Margin="0 10 0 0" 
-     Background="#FFF1B189"/>
-            <TextBlock
-     HorizontalAlignment="Center"
-     FontSize="20"
-     Text="Работник"
-     Margin="0 10 0 0 "/>
-            <TextBox
-     x:Name="TbFullName"
-     HorizontalAlignment="Center"
-     FontSize="20"
-     IsReadOnly="True"
-     Width="200"
-     Margin="0 10 0 0" 
-     Background="#FFF1B189"/>
-            <TextBlock
-     HorizontalAlignment="Center"
-     FontSize="20"
-     Text="Состояние"
-     Margin="0 10 0 0 "/>
-            <ComboBox
-     Name="cmbActive"
-     HorizontalAlignment="Center"
-     FontSize="20"
-     Margin="0 10 0 0 "
-     Width="200" BorderBrush="#FFF1B189"
-/>
-            <TextBlock
-     HorizontalAlignment="Center"
-     FontSize="20"
-     Text="Цена"
-     Margin="0 10 0 0 "/>
-            <TextBox
-     x:Name="TbCost"
-     HorizontalAlignment="Center"
-     FontSize="20"
-     IsReadOnly="True"
      Width="200"
      Margin="0 10 0 0" 
      Background="#FFF1B189"/>
 
+            <TextBlock
+     HorizontalAlignment="Center"
+     FontSize="20"
+ 
+     Text="Имя работника"
+     Margin="0 10 0 0 "/>
+            <TextBox
+
+     HorizontalAlignment="Center"
+     FontSize="20"
+     Width="200"
+     x:Name="TbLastNameW"
+     Margin="0 10 0 0" 
+     Background="#FFF1B189"/>
 
             <TextBlock
-    HorizontalAlignment="Center"
-    FontSize="20"
-    Text="Контракт"
-    Margin="0 10 0 0 "/>
+     HorizontalAlignment="Center"
+     FontSize="20"
+             
+     Text="Отчество  работника"
+     Margin="0 10 0 0 "/>
             <TextBox
-    x:Name="TbContract"
-    HorizontalAlignment="Center"
-    FontSize="20"
-    Width="200"
-     IsReadOnly="True"
-    Margin="0 10 0 0" 
-    Background="#FFF1B189"/>
+
+     HorizontalAlignment="Center"
+     FontSize="20"
+     Width="200"
+     x:Name="TbPatronymicW"
+     Margin="0 10 0 0" 
+     Background="#FFF1B189"/>-->
             <TextBlock
      HorizontalAlignment="Center"
      FontSize="20"
-     Text="Дата создания"
+     Text="Комментарий"
      Margin="0 10 0 0 "/>
-            <DatePicker x:Name="datePickerStart" Width="195" IsEnabled="False"/>
-            <TextBlock
+            <TextBox
+     x:Name="TbComment"
      HorizontalAlignment="Center"
      FontSize="20"
-     Text="Дата окончания"
-     Margin="0 10 0 0 "/>
-            <DatePicker x:Name="datePickerEnd" Width="195"
-     />
+     Width="200"
+     Margin="0 10 0 0" 
+     Background="#FFF1B189"/>
             <Button
-         x:Name="btnSave"
+     x:Name="btnSave"
      Content="Сохранить"
-    FontSize="20"
-    Width="200"
-    Margin="0 10 0 0" Click="btnSave_Click"  
-    Background="#FF9E73" 
-    Style="{StaticResource  ButtonStileBa}" 
-    Height="35">
+     FontSize="20"
+     Width="200"
+     Margin="0 10 0 0" Click="btnSave_Click"
+     Background="#FF9E73" 
+     Style="{StaticResource  ButtonStileBa}" Height="35">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="15"/>
@@ -110,14 +116,14 @@
                 </Button.Resources>
             </Button>
             <Button
-         x:Name="btnClose"
-    Content="Отмена"
-    FontSize="20"
-    Width="200"
-    Margin="0 10 0 0"  
-    Background="#FF9E73" 
-    Style="{StaticResource  ButtonStileBa}" 
-    Height="35">
+           x:Name="btnClose"
+           Content="Отмена"
+           FontSize="20"
+           Width="200"
+           Margin="0 10 0 0" Click="btnClose_Click" 
+           Background="#FF9E73" 
+           Style="{StaticResource  ButtonStileBa}">
+
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="15"/>
@@ -141,17 +147,17 @@
                 </TransformGroup>
             </Image.RenderTransform>
         </Image>
-        <Image x:Name="___Res_1_png_Копировать" Margin="-160,396,0,0"
+        <Image x:Name="___Res_1_png_Копировать" Margin="-131,372,0,0"
                Source="/Res/1.png" 
                Stretch="Fill" 
                RenderTransformOrigin="0.399,1.319"
                HorizontalAlignment="Left" 
-               Width="555" Height="66" VerticalAlignment="Top" Opacity="0.5">
-             <Image.RenderTransform>
+               Width="473" Height="66" VerticalAlignment="Top" Opacity="0.5">
+            <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform AngleY="-0.228"/>
-                    <RotateTransform Angle="51.441"/>
+                    <RotateTransform Angle="47.93"/>
                     <TranslateTransform X="-47.424" Y="-29.937"/>
                 </TransformGroup>
             </Image.RenderTransform>

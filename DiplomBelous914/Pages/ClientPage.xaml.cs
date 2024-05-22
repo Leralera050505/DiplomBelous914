@@ -124,7 +124,7 @@ namespace DiplomBelous914.Pages
             editClientWindow.ShowDialog();
         }
 
-        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        private void btnUpdate_Click_1(object sender, RoutedEventArgs e)
         {
             listviewClient.ItemsSource = Context.Client.ToList();
         }

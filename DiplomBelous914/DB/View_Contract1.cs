@@ -12,10 +12,10 @@ namespace DiplomBelous914.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class View_Contract
+    public partial class View_Contract1
     {
         public string NameContract { get; set; }
-        public bool Activity { get; set; }
+        public Nullable<bool> Activity { get; set; }
         public string NameService { get; set; }
         public Nullable<decimal> FullCost { get; set; }
         public System.DateTime StartDate { get; set; }

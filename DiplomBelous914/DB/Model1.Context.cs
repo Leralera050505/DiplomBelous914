@@ -33,7 +33,7 @@ namespace DiplomBelous914.DB
         public virtual DbSet<Competence> Competence { get; set; }
         public virtual DbSet<CompetenceCheck> CompetenceCheck { get; set; }
         public virtual DbSet<CompetenceWorker> CompetenceWorker { get; set; }
-        public virtual DbSet<Contract> Contract { get; set; }
+        public virtual DbSet<Contractt> Contractt { get; set; }
         public virtual DbSet<Document> Document { get; set; }
         public virtual DbSet<Education> Education { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
@@ -47,8 +47,13 @@ namespace DiplomBelous914.DB
         public virtual DbSet<View_Contract> View_Contract { get; set; }
         public virtual DbSet<View_Service> View_Service { get; set; }
         public virtual DbSet<View_ServiceWorker> View_ServiceWorker { get; set; }
+        public virtual DbSet<View_ServiceWorker2> View_ServiceWorker2 { get; set; }
         public virtual DbSet<View_Worker> View_Worker { get; set; }
         public virtual DbSet<VW_Worker_T> VW_Worker_T { get; set; }
+        public virtual DbSet<WorkerW> WorkerW { get; set; }
+        public virtual DbSet<VW_FIO_Worker> VW_FIO_Worker { get; set; }
+        public virtual DbSet<VW_FIO_Client> VW_FIO_Client { get; set; }
+        public virtual DbSet<View_Contract1> View_Contract1 { get; set; }
     
         [DbFunction("Entities", "ContractService")]
         public virtual IQueryable<ContractService_Result> ContractService(string nameServace)

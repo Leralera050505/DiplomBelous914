@@ -17,7 +17,6 @@ using DiplomBelous914.DB;
 using DiplomBelous914.HelpClass;
 using System.Windows.Media.TextFormatting;
 using static DiplomBelous914.HelpClass.EFClass;
-using System.Security.Cryptography.X509Certificates;
 
 namespace DiplomBelous914.Windows
 {
@@ -48,7 +47,6 @@ namespace DiplomBelous914.Windows
                 {
                     string filePath = openFileDialog.FileName;
                     S = filePath;
-                    MessageBox.Show(S);
                 }
             }
             else
@@ -86,12 +84,18 @@ namespace DiplomBelous914.Windows
                 Context.Education.Add(education);
                
                 Context.SaveChanges();
+                this.Close();
             }
             catch (Exception ex)
             {
 
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

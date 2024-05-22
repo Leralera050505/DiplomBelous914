@@ -17,6 +17,8 @@ using static DiplomBelous914.HelpClass.EFClass;
 using DiplomBelous914.Windows;
 using System.Collections;
 using System.Data.Entity;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace DiplomBelous914.Pages
 {
@@ -25,7 +27,7 @@ namespace DiplomBelous914.Pages
     /// </summary>
     public partial class ServicePage : Page
     {
-        View_ServiceWorker View_ServiceWorker1;
+
         List<View_ServiceWorker> services = new List<View_ServiceWorker>();
         List<string> sortlist = new List<string>()
         {
@@ -105,15 +107,16 @@ namespace DiplomBelous914.Pages
             GetListService();
         }
 
-        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+            private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
             if (HelpClass.UserClass.Worker.Post.IdPost == 3 /*Юрист*/)
             {
-                listviewService.ItemsSource = Context.View_ServiceWorker.ToList().Where(i => i.IdWorker == HelpClass.UserClass.Worker.IdWorker);
+
+                listviewService.ItemsSource = Context.View_ServiceWorker2.ToList();
             }
             else if (HelpClass.UserClass.Worker.Post.IdPost == 2 /*Менеджер*/ )
             {
-                listviewService.ItemsSource = Context.View_ServiceWorker.ToList();
+                listviewService.ItemsSource = Context.View_ServiceWorker2.ToList();
             }
 
         }
@@ -124,5 +127,7 @@ namespace DiplomBelous914.Pages
             editServiceWindow.ShowDialog();
             
         }
+
+       
     }
 }
