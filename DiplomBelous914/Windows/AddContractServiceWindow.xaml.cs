@@ -54,6 +54,7 @@ namespace DiplomBelous914.Windows
                 Context.SaveChanges();
                 MessageBox.Show("Услуга добавлена", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.Close();
+
             }
             else
             {
