@@ -16,6 +16,7 @@ using Microsoft.Win32;
 using DiplomBelous914.HelpClass;
 using System.Windows.Media.TextFormatting;
 using static DiplomBelous914.HelpClass.EFClass;
+using System.Text.RegularExpressions;
 
 namespace DiplomBelous914.Windows
 {
@@ -31,6 +32,7 @@ namespace DiplomBelous914.Windows
             InitializeComponent();
             try
             {
+                
                 client1 = client;
                 TbFirstName.Text = client1.FirstName;
                 TbLastName.Text = client1.LastName;
@@ -51,16 +53,63 @@ namespace DiplomBelous914.Windows
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            client1.LastName = TbLastName.Text;
-            client1.FirstName = TbFirstName.Text;
-            client1.Patronymic = TbPatronymic.Text;
-            client1.Email = TbEmail.Text;
-            client1.Phone = TbPhone.Text;
-            client1.IdGender = (cmbGender.SelectedItem as Gender).IdGender;
-            Context.SaveChanges();
-            MessageBox.Show("Клиент успешно сохранен!");
+            if (!string.IsNullOrEmpty(TbFirstName.Text) && !string.IsNullOrEmpty(TbLastName.Text) && !string.IsNullOrEmpty(TbPhone.Text) && !string.IsNullOrEmpty(TbEmail.Text)) //Проверка на пустые значения
+            {
+                if (TbPhone.Text == Convert.ToString(Regex.Match(TbPhone.Text, "^(?:\\+7|8|7)\\d{10}$", RegexOptions.IgnoreCase))) //Проверка формата Телефона
+                {
 
-            this.Close();
+                    if (TbFirstName.Text == Convert.ToString(Regex.Match(TbFirstName.Text, "^[А-ЯЁ]+[а-яё]$", RegexOptions.IgnoreCase))) //Проверка на Имя
+                    {
+                        if (TbLastName.Text == Convert.ToString(Regex.Match(TbLastName.Text, "^[А-ЯЁ]+[а-яё]$", RegexOptions.IgnoreCase)))//Проверка на Фамилию
+                        {
+
+                            if (TbPatronymic.Text == Convert.ToString(Regex.Match(TbPatronymic.Text, "^[А-ЯЁ]+[а-яё]$", RegexOptions.IgnoreCase)) || TbPatronymic.Text == null) //Проверка на Отчество
+                            {
+
+                                if (TbEmail.Text == Convert.ToString(Regex.Match(TbEmail.Text, "^[^@\\s]+@[^@\\s]+\\.(com|net|org|gov|ru)$", RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(250)))) //проверка формата Эл.Почты
+                                {
+                                    client1.LastName = TbLastName.Text;
+                                    client1.FirstName = TbFirstName.Text;
+                                    client1.Patronymic = TbPatronymic.Text;
+                                    client1.Email = TbEmail.Text;
+                                    client1.Phone = TbPhone.Text;
+                                    client1.IdGender = (cmbGender.SelectedItem as Gender).IdGender;
+                                    Context.SaveChanges();
+                                    MessageBox.Show("Клиент успешно сохранен!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                                    this.Close();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Неверный формат электронной почты", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Information);
+                                    return;
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Отчество  введено не корректно", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Фамилия введено не корректно", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Имя введено не корректно", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Неверно введен телефон", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Все поля со знаком * должны быть заполнены", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)

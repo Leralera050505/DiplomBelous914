@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiplomBelous914.Windows"
         mc:Ignorable="d"
-        Title="AddContractServiceWindow" Height="600" Width="800"
+        Title="Добавление услуги" Height="600" Width="800"
           WindowStartupLocation="CenterScreen">
 
     <Grid>
@@ -15,7 +15,7 @@
 
             <TextBlock
             HorizontalAlignment="Center"
-            FontSize="20" Text="Договор"/>
+            FontSize="20" Text="Договор *"/>
             <TextBox
             x:Name="TbContract"
             IsReadOnly="True"
@@ -26,81 +26,34 @@
             Background="#FFF1B189"/>
             <TextBlock
      HorizontalAlignment="Center"
-     FontSize="20" Text="Услуга"/>
+     FontSize="20" Text="Услуга "/>
             <ComboBox Width="194" x:Name="cmbService" />
             <TextBlock
                        HorizontalAlignment="Center"
                        FontSize="20"
-                       Text="Дата"
+                       Text="Дата *"
                        Margin="0 10 0 0 "/>
             <DatePicker x:Name="StartdatePicker" Width="194"/>
             <TextBlock
                 HorizontalAlignment="Center"
-                FontSize="20" Text="Работник"/>
+                FontSize="20" Text="Работник "/>
             <ComboBox Width="194" x:Name="cmbFIOWorker" />
-            <!--<TextBlock
-                      HorizontalAlignment="Center"
-                      FontSize="20"
-                      Text="Работник"
-                      Margin="0 10 0 0 "/>
-            <ComboBox Width="194" 
-                      x:Name="cmbWorker" 
-                      ItemTemplate="{StaticResource ClientTemplate}"/>-->
-            <!--<TextBlock
-     HorizontalAlignment="Center"
-     FontSize="20"
- 
-     Text="Фамилия работника"
-     Margin="0 10 0 0 "/>
-            <TextBox
-     x:Name="TbFirstNameW"
-     HorizontalAlignment="Center"
-     FontSize="20"
-     Width="200"
-     Margin="0 10 0 0" 
-     Background="#FFF1B189"/>
 
-            <TextBlock
-     HorizontalAlignment="Center"
-     FontSize="20"
- 
-     Text="Имя работника"
-     Margin="0 10 0 0 "/>
-            <TextBox
-
-     HorizontalAlignment="Center"
-     FontSize="20"
-     Width="200"
-     x:Name="TbLastNameW"
-     Margin="0 10 0 0" 
-     Background="#FFF1B189"/>
-
-            <TextBlock
-     HorizontalAlignment="Center"
-     FontSize="20"
-             
-     Text="Отчество  работника"
-     Margin="0 10 0 0 "/>
-            <TextBox
-
-     HorizontalAlignment="Center"
-     FontSize="20"
-     Width="200"
-     x:Name="TbPatronymicW"
-     Margin="0 10 0 0" 
-     Background="#FFF1B189"/>-->
             <TextBlock
      HorizontalAlignment="Center"
      FontSize="20"
      Text="Комментарий"
      Margin="0 10 0 0 "/>
-            <TextBox
+            <ScrollViewer x:Name="SVComm" VerticalScrollBarVisibility="Auto">
+                <TextBox
+     TextWrapping="Wrap"
      x:Name="TbComment"
-     HorizontalAlignment="Center"
      FontSize="20"
-     Width="200"
+     Width="203"
      Margin="0 10 0 0" 
-     Background="#FFF1B189"/>
+     Background="#FFF1B189" Height="99"/>
+            </ScrollViewer>
+
             <Button
      x:Name="btnSave"
      Content="Сохранить"

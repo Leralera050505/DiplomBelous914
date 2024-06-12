@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiplomBelous914.Windows"
         mc:Ignorable="d"
-        Title="MenuWindow" Height="600" Width="1230"
+        Title="Главное окно" Height="600" Width="1230"
          WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Storyboard x:Key="MenuOpen">
@@ -199,14 +199,6 @@
                         </Button.Background>
                     </Button>
                 </StackPanel>
-
-
-
-
-
-
-
-
                 <StackPanel Orientation="Horizontal"
                 Height="72"
                 Width="192">
@@ -215,8 +207,7 @@
                     <Button x:Name="BtnClose"
                       Width="51" 
                       Style="{StaticResource CustomButtonStyle}"
-                       Margin="40 10 0 0" Height="45" Click="BtnClose_Click"
-              >
+                       Margin="40 10 0 0" Height="45" Click="BtnClose_Click" >
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="15"/>
@@ -225,12 +216,8 @@
                         <Button.Background>
                             <ImageBrush ImageSource="/Res/home.png"/>
                         </Button.Background>
-
                     </Button>
-
-
                 </StackPanel>
-
             </StackPanel>
         </Grid>
 

@@ -53,27 +53,24 @@ namespace DiplomBelous914.Windows
                 {
                     contract.StartDate = Convert.ToDateTime(datePicker.Text);
                 }
-                //Client client = new Client();
-                //client = Context.Client.ToList().Where(i => i.FirstName == TbFirstName.Text 
-                //|| i.LastName == TbLastName.Text
-                //|| i.Patronymic == TbPatronymic.Text).FirstOrDefault();
-               
+
                  contract.IdClient = (cmbFIOClient.SelectedItem as DB.VW_FIO_Client).IdClient;
-            Context.Contractt.Add(contract);
+                 Context.Contractt.Add(contract);
                  ClientContract clientContract = new ClientContract();
-                clientContract.IdService = (cmbService.SelectedItem as DB.Service).IdService;
-                clientContract.StartDateService = Convert.ToDateTime(StartdatePicker.Text);
-                //Worker worker = new Worker();
-            //worker = Context.Worker.ToList().Where(i => i.FirstName == TbFirstNameW.Text
-            //|| i.LastName == TbLastNameW.Text
-            //|| i.Patronymic == TbPatronymicW.Text).FirstOrDefault();
-             clientContract.IdWorker = (cmbFIOWorker.SelectedItem as DB.VW_FIO_Worker).IdWorker; 
-            clientContract.Comment = TbComment.Text;
-            Context.ClientContract.Add(clientContract);
-            Context.SaveChanges();
-                MessageBox.Show("Контракт Добавлен");
-                this.Close();
+                 clientContract.IdService = (cmbService.SelectedItem as DB.Service).IdService;
+                 clientContract.StartDateService = Convert.ToDateTime(StartdatePicker.Text);
+                 clientContract.IdWorker = (cmbFIOWorker.SelectedItem as DB.VW_FIO_Worker).IdWorker; 
+                 clientContract.Comment = TbComment.Text;
+                 Context.ClientContract.Add(clientContract);
+                 Context.SaveChanges();
+                 MessageBox.Show("Контракт Добавлен", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+                 this.Close();
             
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

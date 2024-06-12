@@ -1,6 +1,8 @@
 ﻿using DiplomBelous914.DB;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,20 +38,27 @@ namespace DiplomBelous914.Windows
 
         }
 
-
+       
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            ClientContract clientContract = new ClientContract();
-            clientContract.IdService = (cmbService.SelectedItem as DB.Service).IdService;
-            clientContract.StartDateService = Convert.ToDateTime(StartdatePicker.Text);
-           
-            clientContract.IdWorker = (cmbFIOWorker.SelectedItem as DB.VW_FIO_Worker).IdWorker;
-            clientContract.Comment = TbComment.Text;
-            Context.ClientContract.Add(clientContract);
-            clientContract.IdContract = contract1.IdContract;
-            Context.SaveChanges();
-            MessageBox.Show("Услуга добавлена");
-            this.Close();
+            if (!string.IsNullOrEmpty(TbContract.Text) && !string.IsNullOrEmpty(cmbFIOWorker.Text) && !string.IsNullOrEmpty(cmbService.Text) && !string.IsNullOrEmpty(StartdatePicker.Text) ) //проверка на пустые значения
+            {
+                ClientContract clientContract = new ClientContract();
+                clientContract.IdService = (cmbService.SelectedItem as DB.Service).IdService;
+                clientContract.StartDateService = Convert.ToDateTime(StartdatePicker.Text);
+
+                clientContract.IdWorker = (cmbFIOWorker.SelectedItem as DB.VW_FIO_Worker).IdWorker;
+                clientContract.Comment = TbComment.Text;
+                Context.ClientContract.Add(clientContract);
+                clientContract.IdContract = contract1.IdContract;
+                Context.SaveChanges();
+                MessageBox.Show("Услуга добавлена", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Все поля со знаком * должны быть заполнены", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)

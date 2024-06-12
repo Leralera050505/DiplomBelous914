@@ -119,38 +119,43 @@ namespace DiplomBelous914.Pages
         }
         private void btnUpdate_Click_2(object sender, RoutedEventArgs e)
         {
-            listviewWorker.ItemsSource = Context.WorkerW.ToList();
+            Entities con2 = new Entities();
+            listviewWorker.ItemsSource = con2.VW_Worker_T.ToList();
         }
 
 
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить работника", "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.Yes)
+            if (listviewWorker.SelectedItem != null)
             {
-
-                if (listviewWorker.SelectedItem != null)
+                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить работника", "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
                 {
-                    VW_Worker_T worker = listviewWorker.SelectedItem as VW_Worker_T;
 
-                    Password password = Context.Password.ToList().Where(i => i.IdPassword == worker.IdPassword).FirstOrDefault();
-                    Context.Password.Remove(password);
-                    Context.SaveChanges();
-                    Worker worker1 = Context.Worker.ToList().Where(i => i.IdWorker == worker.IdWorker).FirstOrDefault();
-                    Context.Worker.Remove(worker1);
-                    Context.SaveChanges();
-                    Education education = Context.Education.ToList().Where(i => i.IdWorker == worker.IdWorker).FirstOrDefault();
-                    Context.Education.Remove(education);
-                    Context.SaveChanges();
-                    listviewWorker.ItemsSource = Context.VW_Worker_T.ToList();
-                }
-                else
-                {
-                    MessageBox.Show("Выделите запись, которую хотите удалить");
-                    return;
-                }
+                    if (listviewWorker.SelectedItem != null)
+                    {
+                        VW_Worker_T worker = listviewWorker.SelectedItem as VW_Worker_T;
 
+                        Password password = Context.Password.ToList().Where(i => i.IdPassword == worker.IdPassword).FirstOrDefault();
+                        Context.Password.Remove(password);
+                        Context.SaveChanges();
+                        Worker worker1 = Context.Worker.ToList().Where(i => i.IdWorker == worker.IdWorker).FirstOrDefault();
+                        Context.Worker.Remove(worker1);
+                        Context.SaveChanges();
+                        Education education = Context.Education.ToList().Where(i => i.IdWorker == worker.IdWorker).FirstOrDefault();
+                        Context.Education.Remove(education);
+                        Context.SaveChanges();
+                        listviewWorker.ItemsSource = Context.VW_Worker_T.ToList();
+                    }
+
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Выделите запись, которую хотите удалить","Ошибка", MessageBoxButton.OK, MessageBoxImage.Question);
+                return;
             }
         }
 
@@ -158,8 +163,16 @@ namespace DiplomBelous914.Pages
 
         private void btnEditWorker_Click(object sender, RoutedEventArgs e)
         {
-            EditWorkerWindow editWorkerWindow = new EditWorkerWindow(listviewWorker.SelectedItem as VW_Worker_T);
-            editWorkerWindow.Show();
+            if (listviewWorker.SelectedItem != null)
+            {
+                EditWorkerWindow editWorkerWindow = new EditWorkerWindow(listviewWorker.SelectedItem as VW_Worker_T);
+                editWorkerWindow.Show();
+            }
+            else 
+            {
+                MessageBox.Show("Выберите работника, которого хотите изменить", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Question);
+            }
+          
 
         }
 

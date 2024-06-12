@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:DiplomBelous914.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="850"
-      Title="WorkerPage">
+      Title="Вывод работника">
 
     <Grid>
         

@@ -38,7 +38,7 @@ namespace DiplomBelous914.Windows
             {
                 BtnWorker.Visibility = Visibility.Collapsed;
             }
-            else if (HelpClass.UserClass.Worker.Post.IdPost == 3)
+            else if (HelpClass.UserClass.Worker.Post.IdPost == 3 /*Юрист*/)
             {
                 BtnClient.Visibility = Visibility.Collapsed;
                 BtnWorker.Visibility = Visibility.Collapsed;

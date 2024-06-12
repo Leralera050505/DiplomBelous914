@@ -19,6 +19,7 @@ using System.Collections;
 using System.Data.Entity;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics.Eventing.Reader;
 
 namespace DiplomBelous914.Pages
 {
@@ -109,22 +110,34 @@ namespace DiplomBelous914.Pages
 
             private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
+           
             if (HelpClass.UserClass.Worker.Post.IdPost == 3 /*Юрист*/)
             {
-
-                listviewService.ItemsSource = Context.View_ServiceWorker2.ToList();
+                Entities con2 = new Entities();
+                listviewService.ItemsSource = con2.View_ServiceWorker.ToList().Where(i => i.IdWorker == HelpClass.UserClass.Worker.IdWorker);
             }
             else if (HelpClass.UserClass.Worker.Post.IdPost == 2 /*Менеджер*/ )
             {
-                listviewService.ItemsSource = Context.View_ServiceWorker2.ToList();
+                Entities con2 = new Entities();
+                listviewService.ItemsSource = con2.View_ServiceWorker.ToList();
             }
 
         }
 
         private void btnEditStatus_Click(object sender, RoutedEventArgs e)
         {
-            EditServiceWindow editServiceWindow = new EditServiceWindow(listviewService.SelectedItem as View_ServiceWorker);
-            editServiceWindow.ShowDialog();
+            if (listviewService.SelectedItem != null)
+            {
+                EditServiceWindow editServiceWindow = new EditServiceWindow(listviewService.SelectedItem as View_ServiceWorker);
+                editServiceWindow.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Выберите услугу, которую хотите изменить", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Question);
+            }
+           
+           
+
             
         }
 

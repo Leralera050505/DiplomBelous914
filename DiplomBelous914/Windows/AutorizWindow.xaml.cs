@@ -29,26 +29,37 @@ namespace DiplomBelous914.Windows
         {
             if (string.IsNullOrWhiteSpace(TbLogin.Text))
             {
-                MessageBox.Show("Логин не может быть пустым");
+                MessageBox.Show("Логин не может быть пустым", "Не успех!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else if (string.IsNullOrWhiteSpace(TbPassword.Text))
             {
-                MessageBox.Show(" Пароль не может быть пустым");
+                MessageBox.Show(" Пароль не может быть пустым", "не успех!", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
                 try
                 {
-                    var auth = Context.Password.ToList()
-                .Where(i => i.Login == TbLogin.Text && i.Password1 == TbPassword.Text).FirstOrDefault();
-                    var Worker = Context.Worker.ToList().Where(i => i.Password.Login == TbLogin.Text).FirstOrDefault();
-                    if (Worker != null)
+                    var login = Context.Password.ToList().Where(i => i.Login == TbLogin.Text && i.Password1 == TbPassword.Text).FirstOrDefault();
+
+                    if (login != null)
                     {
-                        HelpClass.UserClass.Worker = Worker;
-                        MenuWindow menuWindow = new MenuWindow();
-                        menuWindow.Show();
-                        this.Close();
+                        var auth = Context.Password.ToList()
+                      .Where(i => i.Login == TbLogin.Text && i.Password1 == TbPassword.Text).FirstOrDefault();
+                        var Worker = Context.Worker.ToList().Where(i => i.Password.Login == TbLogin.Text).FirstOrDefault();
+                        if (Worker != null)
+                        {
+                            HelpClass.UserClass.Worker = Worker;
+                            MenuWindow menuWindow = new MenuWindow();
+                            menuWindow.Show();
+                            this.Close();
+                        }
                     }
+                    else
+                    {
+                        MessageBox.Show("Пользователь не найден", "ошибка!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+              
+                   
                 }
                 catch (Exception ex)
                 {
@@ -58,5 +69,8 @@ namespace DiplomBelous914.Windows
 
             }
         }
+
+     
+
     }
 }

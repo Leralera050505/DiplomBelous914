@@ -59,7 +59,12 @@ namespace DiplomBelous914.Windows
             editClientContract.IDActivityService = (cmbActive.SelectedItem as ActivityService).IdActivityService;
          
             Context.SaveChanges();
-            MessageBox.Show("Услуга сохранена");
+            MessageBox.Show("Услуга сохранена", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+            this.Close();
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
             this.Close();
         }
     }

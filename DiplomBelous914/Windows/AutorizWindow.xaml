@@ -5,15 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiplomBelous914.Windows"
         mc:Ignorable="d"
-        Title="AutorizWindow" Height="450" Width="800"
+        Title="Авторизация" Height="450" Width="800"
          WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="363*"/>
-            <ColumnDefinition Width="437*"/>
+            <ColumnDefinition Width="296*"/>
+            <ColumnDefinition Width="141*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="1" HorizontalAlignment="Center" Width="437" Height="434" VerticalAlignment="Top" >
+        <StackPanel Grid.Column="1" HorizontalAlignment="Left" Width="437" Height="434" VerticalAlignment="Center" Grid.ColumnSpan="2" >
             <TextBlock
         x:Name="TbAv"
         Text="Авторизация"
@@ -43,14 +44,16 @@
                  Margin="85 0 0 0" 
                  Width="203" 
                  />
+
+          
             <TextBox
-                 x:Name="TbPassword"
-                 Width="170"
-                 Height="30"
-                 FontSize="20"
-                 Margin="0 10 20 0"
-                 Background="#FFFCC491"
-/>
+                x:Name="TbPassword"
+                Width="170"
+                Height="30"
+                FontSize="20"
+                Margin="0 10 20 0"
+                Background="#FFFCC491"
+                />
             <Button 
                 x:Name="btnMenu"
                 Content="Войти"
@@ -60,23 +63,23 @@
                 Click="btnMenu_Click"
                 Background="#FF9E73" 
                 Style="{StaticResource  ButtonStileBa}"
-    >           
+    >
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="15"/>
                     </Style>
-                    
+
                 </Button.Resources>
-                
+
             </Button>
 
         </StackPanel>
-
+      
         <Image 
-               Margin="34,98,0,0"
+               Margin="0,98,0,0"
                
                Source="/Res/Весы.png" 
-               Stretch="Fill" Height="277" VerticalAlignment="Top" HorizontalAlignment="Left" Width="296"/>
+               Stretch="Fill" Height="277" VerticalAlignment="Top" HorizontalAlignment="Center" Width="296"/>
         <Image x:Name="___Res_1_png" Margin="-138,-55,0,0" Source="/Res/1.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="431" Height="172" VerticalAlignment="Top">
             <Image.RenderTransform>
                 <TransformGroup>

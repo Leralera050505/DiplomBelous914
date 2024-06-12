@@ -100,28 +100,44 @@ namespace DiplomBelous914.Pages
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить клиента", "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if(result == MessageBoxResult.Yes)
+            if (listviewClient.SelectedItem != null)
             {
-                try
+                MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить клиента", "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result == MessageBoxResult.Yes)
                 {
-                    Client client = listviewClient.SelectedItem as Client;
-                    Context.Client.Remove(client);
-                    Context.SaveChanges();
-                    listviewClient.ItemsSource = Context.Client.ToList();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
+                    try
+                    {
+                        Client client = listviewClient.SelectedItem as Client;
+                        Context.Client.Remove(client);
+                        Context.SaveChanges();
+                        listviewClient.ItemsSource = Context.Client.ToList();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
+            else
+            {
+                MessageBox.Show("Выберите клиента, которого хотите удалить", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Question);
+            }
+          
           
         }
 
         private void btnEditClient_Click(object sender, RoutedEventArgs e)
         {
-            EditClientWindow editClientWindow = new EditClientWindow(listviewClient.SelectedItem as Client);
-            editClientWindow.ShowDialog();
+            if (listviewClient.SelectedItem != null)
+            {
+                EditClientWindow editClientWindow = new EditClientWindow(listviewClient.SelectedItem as Client);
+                editClientWindow.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Выберите клиента, которого хотите изменить","Ошибка", MessageBoxButton.OK, MessageBoxImage.Question);
+            }
+      
         }
 
         private void btnUpdate_Click_1(object sender, RoutedEventArgs e)

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:DiplomBelous914.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="860"
-      Title="ContractPage">
+      Title="Вывод контракта">
 
     <Grid>
         <WrapPanel Margin="0,0,-34,0">
@@ -58,19 +58,6 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <!--<Button 
-             Content=" Удалить "
-             Margin="8 0"
-             x:Name="btnDeleteContract"
-             Background="#FF9E73"
-             Style="{StaticResource ButtonStileBa}" Click="btnDeleteContract_Click"
-            >
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="20"></Setter>
-                    </Style>
-                </Button.Resources>
-            </Button>-->
             <Button 
        x:Name="btnUpdate"
        Margin="8 0"

@@ -16,6 +16,9 @@ using Microsoft.Win32;
 using DiplomBelous914.HelpClass;
 using System.Windows.Media.TextFormatting;
 using static DiplomBelous914.HelpClass.EFClass;
+using System.Data.Entity;
+using System.Xml.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DiplomBelous914.Windows
 {
@@ -33,24 +36,27 @@ namespace DiplomBelous914.Windows
             InitializeComponent();
             try
             {
-                TbFirstName.Text = worker.FirstName;
-                TbLastName.Text = worker.LastName;
-                TbPatronymic.Text = worker.Patronymic;
-                TbPassword.Text = worker.Password;
-                TbLogin.Text = worker.Login;
-                cmbGender.ItemsSource = Context.Gender.ToList();
-                cmbGender.DisplayMemberPath = "NameGender";
-                cmbGender.SelectedItem = Context.Gender.ToList().Where(i => i.IdGender == worker.IdGender).FirstOrDefault();
+               
+                    TbFirstName.Text = worker.FirstName;
+                    TbLastName.Text = worker.LastName;
+                    TbPatronymic.Text = worker.Patronymic;
+                    TbPassword.Text = worker.Password;
+                    TbLogin.Text = worker.Login;
+                    cmbGender.ItemsSource = Context.Gender.ToList();
+                    cmbGender.DisplayMemberPath = "NameGender";
+                    cmbGender.SelectedItem = Context.Gender.ToList().Where(i => i.IdGender == worker.IdGender).FirstOrDefault();
 
-                cmbPost.ItemsSource = Context.Post.ToList();
-                cmbPost.DisplayMemberPath = "NamePost";
-                cmbPost.SelectedItem = Context.Post.ToList().Where(i => i.IdPost == worker.IdPost).FirstOrDefault();
+                    cmbPost.ItemsSource = Context.Post.ToList();
+                    cmbPost.DisplayMemberPath = "NamePost";
+                    cmbPost.SelectedItem = Context.Post.ToList().Where(i => i.IdPost == worker.IdPost).FirstOrDefault();
+
+                    test = worker.IdWorker;
+                    test2 = worker.IdPassword;
+
+                    password = Context.Password.Where(i => i.IdPassword == test2).FirstOrDefault();
+                    editworker = Context.Worker.Where(i => i.IdWorker == test).FirstOrDefault();
                 
-                test = worker.IdWorker;
-                test2 = worker.IdPassword;
-
-                password = Context.Password.Where(i => i.IdPassword == test2).FirstOrDefault();
-                editworker = Context.Worker.Where(i => i.IdWorker == test).FirstOrDefault();
+              
             }
             catch (Exception ex)
             {
@@ -61,16 +67,25 @@ namespace DiplomBelous914.Windows
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            editworker.FirstName = TbFirstName.Text;
-            editworker.LastName = TbLastName.Text;
-            editworker.Patronymic = TbPatronymic.Text;
-            editworker.IdGender = (cmbGender.SelectedItem as Gender).IdGender;
-            editworker.IdPost = (cmbPost.SelectedItem as Post).IdPost;
-            password.Login = TbLogin.Text;
-            password.Password1 = TbPassword.Text;
-            Context.SaveChanges();
-            MessageBox.Show("Работник успешно изменен");
-            this.Close();
+            if (!string.IsNullOrEmpty(TbLastName.Text) || !string.IsNullOrEmpty(TbFirstName.Text) || !string.IsNullOrEmpty(TbLogin.Text) || 
+                !string.IsNullOrEmpty(TbPassword.Text) || !string.IsNullOrEmpty(cmbGender.Text) || !string.IsNullOrEmpty(cmbPost.Text) )
+            {
+              
+                editworker.FirstName = TbFirstName.Text;
+                editworker.LastName = TbLastName.Text;
+                editworker.Patronymic = TbPatronymic.Text;
+                editworker.IdGender = (cmbGender.SelectedItem as Gender).IdGender;
+                editworker.IdPost = (cmbPost.SelectedItem as Post).IdPost;
+                password.Login = TbLogin.Text;
+                password.Password1 = TbPassword.Text;
+                Context.SaveChanges();
+                MessageBox.Show("Работник успешно изменен", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Все поля со знаком * должны быть заполнены", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }     
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)

@@ -94,7 +94,8 @@ namespace DiplomBelous914.Pages
 
         private void btnUpdate_Click(object sender, RoutedEventArgs e)
         {
-            listviewContract.ItemsSource = Context.View_Contract1.ToList();
+            Entities context = new Entities();
+            listviewContract.ItemsSource = context.View_Contract.ToList();
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -105,41 +106,18 @@ namespace DiplomBelous914.Pages
 
         private void btnAddService_Click(object sender, RoutedEventArgs e)
         {
-            AddContractServiceWindow add = new AddContractServiceWindow(listviewContract.SelectedItem as View_Contract);
-            add.ShowDialog();
+            if (listviewContract.SelectedItem !=  null)
+            {
+                AddContractServiceWindow add = new AddContractServiceWindow(listviewContract.SelectedItem as View_Contract);
+                add.ShowDialog();
+            }
+            else 
+            {
+                MessageBox.Show("Выберете контракт, в который хотите добавить услугу", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+          
         }
 
-       
-
-        //private void btnDeleteContract_Click(object sender, RoutedEventArgs e)
-        //{
-        //    MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите удалить работника", "Подтверждение удаления", MessageBoxButton.YesNo, MessageBoxImage.Question);
-        //    if (result == MessageBoxResult.Yes)
-        //    {
-
-        //        if (listviewContract.SelectedItem != null)
-        //        {
-        //            View_Contract Vcontract = listviewContract.SelectedItem as View_Contract;
-
-                   
-                      
-                    
-        //            Contractt contract = Context.Contractt.ToList().Where(i => i.IdContract == Vcontract.IdContract).FirstOrDefault();
-        //            Context.Contractt.Remove(contract);
-        //            Context.SaveChanges();
-        //            ClientContract clientContract = Context.ClientContract.ToList().Where(i => i.IdContract == Vcontract.IdContract).FirstOrDefault();
-        //            Context.ClientContract.Remove(clientContract);
-        //            Context.SaveChanges();
-        //            MessageBox.Show("Контракт удален");
-
-        //            listviewContract.ItemsSource = Context.View_Contract.ToList();
-        //        }
-        //        else
-        //        {
-        //            MessageBox.Show("Выделите запись, которую хотите удалить");
-        //            return;
-        //        }
-        //    }
-        //}
+      
     }
 }
